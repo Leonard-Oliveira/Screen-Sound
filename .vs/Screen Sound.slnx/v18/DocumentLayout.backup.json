@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\Leonard\\source\\repos\\Screen Sound\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9453A6F4-40A5-44A1-B5CE-EC5F67E4DCF8}|Screen Sound\\Screen Sound.csproj|c:\\users\\leonard\\source\\repos\\screen sound\\screen sound\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9453A6F4-40A5-44A1-B5CE-EC5F67E4DCF8}|Screen Sound\\Screen Sound.csproj|solutionrelative:screen sound\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E4EF08EC-85EF-C31A-52FE-DDB42071EF9E}|Screen Sound\\Screen Sound.csproj|c:\\users\\leonard\\source\\repos\\screen sound\\screen sound\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E4EF08EC-85EF-C31A-52FE-DDB42071EF9E}|Screen Sound\\Screen Sound.csproj|solutionrelative:screen sound\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -24,7 +24,7 @@
               "RelativeDocumentMoniker": "Screen Sound\\Program.cs",
               "ToolTip": "C:\\Users\\Leonard\\source\\repos\\Screen Sound\\Screen Sound\\Program.cs",
               "RelativeToolTip": "Screen Sound\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAJwAAAAAAAAAAAAiwKsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-08T01:18:28.845Z",
               "EditorCaption": ""

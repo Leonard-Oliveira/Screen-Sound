@@ -2,6 +2,7 @@
 
 //variaveis globais
 using System.Numerics;
+using System.Security.AccessControl;
 
 string mensagemDeBoasVindas = "Boas-Vindas ao Screen Sound!";
 Dictionary<string, List<int>> listaDebandas = new Dictionary<string, List<int>>(StringComparer.OrdinalIgnoreCase)
@@ -94,11 +95,20 @@ void ProcessaSelecao()
         case 2: //mostrar todas as bandas
             Console.WriteLine("Voce escolheu a opcao " + opcaoEscolhidaNumerica);
             MostraListaDeBandas();
+
             break;
 
         case 3: //avaliar uma banda
             Console.WriteLine("Voce escolheu a opcao " + opcaoEscolhidaNumerica);
-            AvaliaNotaBanda();
+            Console.WriteLine("Qual banda voce quer avaliar?");
+            string bandaSelecionada = Console.ReadLine()!;
+            if (listaDebandas.TryGetValue(bandaSelecionada, out var notas))
+            {
+                Console.WriteLine("Qual nota voce da para esta banda? ");
+                AvaliaBanda(bandaSelecionada);
+                TransicaoDeTelas("Retornando ao menu");
+            }
+            
             break;
 
         case 4: //exibir media da banda
@@ -123,12 +133,30 @@ void RegistraBanda()
 {
     Console.Clear();
     ApresentaTituloDaFuncao("Registrar banda");
+
     Console.Write("Informe o nome da banda que voce quer registrar: ");
+
     string nomeDaBandaAdicionada = Console.ReadLine()!;
     listaDebandas.Add(nomeDaBandaAdicionada, new List<int>());
-    Console.WriteLine($"\nVoce registrou a banda {nomeDaBandaAdicionada}");
-    Console.WriteLine("\nPressione qualquer tecla para voltar ao menu.");
-    Console.ReadKey();
+
+    Console.WriteLine($"\nVoce registrou a banda {nomeDaBandaAdicionada} ");
+    Console.Write("\nVoce quer atribuir uma nota para esta banda? S/N"); 
+    /* inserir validacao de caracteres: somente pode inserir S/N.
+     * converter entrada sempre pra maiusculo
+     * */
+    string opcao = Console.ReadLine()!;
+
+    if (opcao == "S")
+    {
+        Console.WriteLine($"Informe a nota que voce quer atribuir a banda {nomeDaBandaAdicionada}");
+        AvaliaBanda(nomeDaBandaAdicionada);
+        Console.WriteLine();
+    } else
+    {
+        Console.WriteLine("\nPressione qualquer tecla para voltar ao menu.");
+        Console.ReadKey();
+    }
+
     TransicaoDeTelas("Voltando ao menu");
 }
 void MostraListaDeBandas()
@@ -163,21 +191,11 @@ void ObtemMediaDaBanda()
     Console.ReadKey();
     TransicaoDeTelas("Voltando ao menu");
 }
-void AvaliaNotaBanda()
+void AvaliaBanda(string bandaSelecionada)
 {
-    Console.Clear();
-    Console.Write("\nInforme a nota que voce da para a banda: ");
-    string notaMediaInformada = Console.ReadLine();
-    int notaMediaConvertida = int.Parse(notaMediaInformada!);
-
-    if (notaMediaConvertida >= 5)
-    {
-        Console.WriteLine("\nNota suficiente para aprovacao!");
-    }
-    else
-    {
-        Console.WriteLine("Nota insuficiente para aprovacao");
-    }
+    int nota = int.Parse(Console.ReadLine());
+    listaDebandas[bandaSelecionada].Add(nota);
+    Console.WriteLine($"\nVoce acaba de avaliar a banda {bandaSelecionada} com a nota nota {nota}.");
 }
 void BuscaBandaNaLista()
 {
