@@ -12,6 +12,7 @@ Dictionary<string, List<int>> listaDebandas = new Dictionary<string, List<int>>(
     {"Nightwish", new List<int>() {9, 8, 9}}
 };
 
+//mantem o menu rodando após a execução das funções.
 bool rodando = true;
 
 // MAIN
@@ -161,8 +162,6 @@ void RegistraBanda()
 }
 void MostraListaDeBandas()
 {
-    int index = 0;
-
     Console.Clear();
     ApresentaTituloDaFuncao("Bandas Cadastradas no Sistema");
     for (int i = 0; i < listaDebandas.Count; i++)
