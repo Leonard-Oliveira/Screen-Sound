@@ -1,31 +1,13 @@
 using System.Diagnostics;
 
-class Musica
+class Musica(string nome, string artista, int duracao)
 {
     //propriedades publicas
-    public string Nome { get; private set; } 
-    public string Artista { get; private set;}
-    public int Duracao { get; private set; }
-    public bool Disponivel { get; private set; }
-
-    //construtor 
-    public Musica(string nome, string artista, int duracao)
-    {
-        Nome = nome;
-        Artista = artista;
-        Duracao = duracao;
-        Disponivel = true;
-    }
-
-    public void TornaDisponivel()
-    {
-        Disponivel = true;
-    }
-
-    public void TornaIndisponivel()
-    {
-        Disponivel = false;
-    }
+    public string Nome { get; private set; } = nome;
+    public string Artista { get; private set; } = artista;
+    public int Duracao { get; private set; } = duracao;
+    public bool Disponivel { get; private set; } = true;
+    public string DescricaoResumida => $"A música {Nome} pertence ao artista {Artista}";
 
     public void ExibirFichaTecnica()
     {
@@ -39,5 +21,10 @@ class Musica
         {
             Console.WriteLine("Adquira o plano plus+");
         }
+    }
+
+    public void ExibeArtista()
+    {
+        Console.WriteLine($"Música / Artista: {Nome} - {Artista}");
     }
 }
