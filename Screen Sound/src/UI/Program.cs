@@ -1,6 +1,4 @@
 ﻿// Screen Sound 
-
-//variaveis globais
 using System.Numerics;
 using System.Security.AccessControl;
 
