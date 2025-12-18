@@ -1,21 +1,23 @@
 namespace ScreenSound.Application;
+
 using ScreenSound.Domain;
 
 public class AlbumService
 {
+    public static List<Album> _listaDeTodosOsAlbuns = new List<Album>();
+
+    private readonly ArtistaService _artistaService = new ArtistaService();
+
     public void CriaERegistraAlbum(string nomeDoAlbum, string artistaDoAlbum, int anoDeLancamento)
     {
         // Busca na lisaDeTodosOsArtistas o nome do artista usado como parametro para criacao do album
-        Artista? artistaEncontrado = Artista.listaDeTodosOsArtistas.FirstOrDefault(a => a.Nome.Equals(artistaDoAlbum, StringComparison.OrdinalIgnoreCase));
+        Artista? artistaEncontrado = _artistaService.BuscarArtistaPorNome(artistaDoAlbum);  
 
         // Se não existir, cria o artista novo
         Artista artistaFinal = artistaEncontrado ?? new Artista(artistaDoAlbum);
 
         // Instancia o Album
         Album novoAlbum = new Album(nomeDoAlbum, artistaFinal, anoDeLancamento);
-        
-        Console.WriteLine($"✅ Sucesso: '{novoAlbum.NomeDoAlbum}' foi vinculado a '{artistaFinal.Nome}'.");
+        _listaDeTodosOsAlbuns.Add(novoAlbum);
     }
-
-    
 }

@@ -1,0 +1,32 @@
+using ScreenSound.Domain;
+
+public class Genero
+{
+    public string NomeDoGenero { get; private set; }
+    public List<Musica> ListaDeMusicasDoGenero { get; private set; }
+
+    public Genero(string nomeDoGenero)
+    {
+        this.NomeDoGenero = nomeDoGenero;
+        this.ListaDeMusicasDoGenero = new List<Musica>();
+    }
+
+    public void AdicionaMusicaAoGenero(Musica musica)
+    {
+        ListaDeMusicasDoGenero.Add(musica);
+    }
+
+    public void ExibirMusicasDoGenero()
+    {
+        Console.WriteLine($"Músicas do gênero {NomeDoGenero}:");
+        foreach (var musica in ListaDeMusicasDoGenero)
+        {
+            Console.WriteLine($"- {musica.NomeDaMusica} de {musica.ArtistaDaMusica.Nome}");
+        }
+    }
+
+    public int ObterQuantidadeDeMusicas()
+    {
+        return ListaDeMusicasDoGenero.Count;
+    }
+}

@@ -1,12 +1,14 @@
 using ScreenSound.Domain;
 namespace ScreenSound.Application;
 class ArtistaService
-{   
+{
+     public static List<Artista> _listaDeTodosOsArtistas = new List<Artista>();
+     
     // CONSULTA SIMPLES (Para uso no AlbumService)
     // Útil para apenas checar se algo existe sem causar exceptions.
     public Artista? BuscarArtistaPorNome(string nomeDoArtistaProcurado)
     {
-        return Artista.listaDeTodosOsArtistas
+        return _listaDeTodosOsArtistas
             .FirstOrDefault(a => a.Nome.Equals(nomeDoArtistaProcurado, StringComparison.OrdinalIgnoreCase));
     }
 
@@ -19,7 +21,7 @@ class ArtistaService
         if (BuscarArtistaPorNome(nomeDoArtistaASerRegistrado) != null)
             throw new InvalidOperationException($"O artista '{nomeDoArtistaASerRegistrado}' já está no sistema.");
 
-        Artista.listaDeTodosOsArtistas.Add(new Artista(nomeDoArtistaASerRegistrado));
+        _listaDeTodosOsArtistas.Add(new Artista(nomeDoArtistaASerRegistrado));
     }
 
     // (Para o MusicaService)
@@ -31,7 +33,7 @@ class ArtistaService
         if (artista == null)
         {
             artista = new Artista(nomeDoArtistaParaVincular);
-            Artista.listaDeTodosOsArtistas.Add(artista);
+            _listaDeTodosOsArtistas.Add(artista);
         }
         
         return artista;

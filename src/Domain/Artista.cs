@@ -1,8 +1,6 @@
 namespace ScreenSound.Domain;
 public class Artista
 {
-    public static List<Artista> listaDeTodosOsArtistas = new List<Artista>();
-
     //ATRIBUTOS
     public string Nome { get; private set; }
     public List<Musica> ListaDeMusicasDoArtista { get; private set; }
