@@ -1,7 +1,4 @@
-// Artista? artistaEncontrado = Artista.listaDeTodosOsArtistas
-// .FirstOrDefault(a => a.Nome.Equals(artista, StringComparison.OrdinalIgnoreCase));
-// this.Artista = artistaEncontrado ?? new Artista(artista);
-
+namespace ScreenSound.Application;
 using ScreenSound.Domain;
 
 public class AlbumService

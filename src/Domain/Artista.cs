@@ -12,9 +12,6 @@ public class Artista
     {
     this.Nome = nome;
     this.ListaDeMusicasDoArtista = new List<Musica>();
-
-    //sempre que instancia um artista, adiciona na lista
-    listaDeTodosOsArtistas.Add(this);
     }
 
     //MÉTODOS

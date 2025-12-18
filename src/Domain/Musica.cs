@@ -3,6 +3,7 @@ namespace ScreenSound.Domain;
 
 public class Musica
 {
+    public static List<Musica> listaDeTodasAsMusicas = new List<Musica>();
     //ATRIBUTOS
     public string NomeDaMusica { get; private set; } 
     public Artista ArtistaDaMusica { get; private set; }
@@ -19,6 +20,8 @@ public class Musica
         this.ArtistaDaMusica = artistaDaMusica;
         this.Duracao = duracao;
         this.Disponivel = true;
+
+        listaDeTodasAsMusicas.Add(this);
     }
     
     //MÉTODOS

@@ -1,22 +1,31 @@
 namespace ScreenSound.Application;
 using ScreenSound.Domain;
 
+
 public class MusicaService
 {
-    // Esta função centraliza a regra: "Para criar uma música, primeiro resolva o artista"
-    public void CriarERegistrarMusica(string nomeMusica, string nomeArtista, int duracao)
+    private readonly ArtistaService _artistaService = new ArtistaService();
+
+    // Esta função centraliza a regra: "Para criar uma música, primeiro resolva o artista solicitando ao ArtistaService a validacao"
+    public void RegistrarNovaMusica(string nomeMusica, string nomeArtista, int duracao)
     {
-        // 1. Lógica de busca (que antes estava no construtor da Musica)
-        Artista? artistaEncontrado = Artista.listaDeTodosOsArtistas
-            .FirstOrDefault(a => a.Nome.Equals(nomeArtista, StringComparison.OrdinalIgnoreCase));
+        // Validações básicas da música (Regra de Negócio Própria)
+        if (string.IsNullOrWhiteSpace(nomeMusica)) throw new ArgumentException("Nome da música inválido.");
+        if (duracao <= 0) throw new ArgumentException("A duração deve ser positiva.");
 
-        // 2. Se não existir, cria o artista novo
-        Artista artistaFinal = artistaEncontrado ?? new Artista(nomeArtista);
+        // Utiliza o ArtistaService para buscar/criar o artista (validacao)
+        Artista artista = _artistaService.ObterArtistaParaVinculo(nomeArtista);
 
-        // 3. Instancia a Música (agora o construtor da música pode ser simples!)
-        Musica novaMusica = new Musica(nomeMusica, artistaFinal, duracao);
+        // Verifica se essa música já existe para ESSE artista específico
+        // (Evita que o mesmo artista tenha duas músicas com o mesmo nome)
+        if (Musica.listaDeTodasAsMusicas.Any(m => m.NomeDaMusica.Equals(nomeMusica, StringComparison.OrdinalIgnoreCase) 
+            && m.ArtistaDaMusica == artista))
+        {
+            throw new InvalidOperationException($"A música '{nomeMusica}' já está cadastrada para o artista {artista.Nome}.");
+        }
 
-        // 4. Aqui você poderia salvar em uma lista global ou banco de dados
-        Console.WriteLine($"✅ Sucesso: '{novaMusica.NomeDaMusica}' foi vinculada a '{artistaFinal.Nome}'.");
+         // Criação final
+        Musica novaMusica = new Musica(nomeMusica, artista, duracao);
+        Musica.listaDeTodasAsMusicas.Add(novaMusica);
     }
 }
