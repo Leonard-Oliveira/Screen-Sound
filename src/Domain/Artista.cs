@@ -1,4 +1,5 @@
-class Artista
+namespace ScreenSound.Domain;
+public class Artista
 {
     public static List<Artista> listaDeTodosOsArtistas = new List<Artista>();
 

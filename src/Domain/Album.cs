@@ -1,6 +1,8 @@
 namespace ScreenSound.Domain;
 public class Album
-{   // ATRIBUTOS
+{   
+    public static List<Album> listaDeTodosOsAlbuns = new List<Album>();
+    // ATRIBUTOS
     public string NomeDoAlbum { get; set; }
     public Artista ArtistaDoAlbum { get; set; } 
     public int AnoDeLancamento { get; set; }
@@ -13,5 +15,12 @@ public class Album
         this.ArtistaDoAlbum = artista;
         this.AnoDeLancamento = anoDeLancamento;
         this.MusicasDoAlbum = new List<Musica>();
+
+        listaDeTodosOsAlbuns.Add(this);
+    }
+
+    public void AdicionaMusicaAoAlbum(Musica musica)
+    {
+        MusicasDoAlbum.Add(musica);
     }
 }

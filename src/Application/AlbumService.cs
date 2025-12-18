@@ -19,4 +19,6 @@ public class AlbumService
         
         Console.WriteLine($"✅ Sucesso: '{novoAlbum.NomeDoAlbum}' foi vinculado a '{artistaFinal.Nome}'.");
     }
+
+    
 }

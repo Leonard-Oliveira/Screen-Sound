@@ -1,6 +1,7 @@
 ﻿// Screen Sound 
 using System.Numerics;
 using System.Security.AccessControl;
+using ScreenSound.Domain;
 
 string mensagemDeBoasVindas = "Boas-Vindas ao Screen Sound!";
 Dictionary<string, List<int>> listaDebandas = new Dictionary<string, List<int>>(StringComparer.OrdinalIgnoreCase)

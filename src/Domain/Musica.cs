@@ -1,6 +1,7 @@
 using System.Diagnostics;
+namespace ScreenSound.Domain;
 
-class Musica
+public class Musica
 {
     //ATRIBUTOS
     public string NomeDaMusica { get; private set; } 
@@ -12,18 +13,12 @@ class Musica
     public string DescricaoResumida => $"A música {NomeDaMusica} pertence ao artista {ArtistaDaMusica.Nome}";
 
     //CONSTRUTOR
-    public Musica(string nomeDaMusica, string nomeDoArtista, int duracao)
+    public Musica(string nomeDaMusica, Artista artistaDaMusica, int duracao)
     {
         this.NomeDaMusica = nomeDaMusica;
+        this.ArtistaDaMusica = artistaDaMusica;
         this.Duracao = duracao;
         this.Disponivel = true;
-
-        Artista? artistaEncontrado = Artista.listaDeTodosOsArtistas
-        .FirstOrDefault(a => a.Nome.Equals(nomeDoArtista, StringComparison.OrdinalIgnoreCase));
-
-        this.ArtistaDaMusica = artistaEncontrado ?? new Artista(nomeDoArtista);
-
-        this.ArtistaDaMusica.AtribuiMusicaAoArtista(this);
     }
     
     //MÉTODOS
