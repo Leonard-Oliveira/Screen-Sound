@@ -220,7 +220,7 @@ Console.Clear();
 
 // Instanciando os serviços necessários
 var musicaService = new MusicaService();
-var artistaService = new ArtistaService();
+var bandaService = new BandaService();
 
 Console.WriteLine("======================================================");
 Console.WriteLine("🎸 TESTE SCREENSOUND - VERSÃO COM GÊNEROS 🎸");
@@ -255,10 +255,10 @@ try
     {
         // Acessando as propriedades encadeadas que criamos
         string nome = musica.NomeDaMusica.PadRight(15);
-        string artista = musica.ArtistaDaMusica.Nome.PadRight(15);
+        string banda = musica.BandaDaMusica.NomeDaBanda.PadRight(15);
         string genero = musica.GeneroDaMusica.NomeDoGenero;
 
-        Console.WriteLine($"🎵 {nome} | 🎤 {artista} | 🏷️ {genero}");
+        Console.WriteLine($"🎵 {nome} | 🎤 {banda} | 🏷️ {genero}");
     }
 }
 catch (Exception ex)

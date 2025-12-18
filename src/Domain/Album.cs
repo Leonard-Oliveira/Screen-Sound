@@ -3,15 +3,15 @@ public class Album
 {   
     // ATRIBUTOS
     public string NomeDoAlbum { get; private set; }
-    public Artista ArtistaDoAlbum { get; private set; } 
+    public Banda BandaDoAlbum { get; private set; } 
     public int AnoDeLancamento { get; private set; }
     public List<Musica> MusicasDoAlbum { get; private set; }
 
     // CONSTRUTOR
-    public Album(string albumName, Artista artista, int anoDeLancamento)
+    public Album(string albumName, Banda banda, int anoDeLancamento)
     {
         this.NomeDoAlbum = albumName;
-        this.ArtistaDoAlbum = artista;
+        this.BandaDoAlbum = banda;
         this.AnoDeLancamento = anoDeLancamento;
         this.MusicasDoAlbum = new List<Musica>();
     }

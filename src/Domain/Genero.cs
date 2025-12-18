@@ -21,7 +21,7 @@ public class Genero
         Console.WriteLine($"Músicas do gênero {NomeDoGenero}:");
         foreach (var musica in ListaDeMusicasDoGenero)
         {
-            Console.WriteLine($"- {musica.NomeDaMusica} de {musica.ArtistaDaMusica.Nome}");
+            Console.WriteLine($"- {musica.NomeDaMusica} de {musica.BandaDaMusica.NomeDaBanda}");
         }
     }
 

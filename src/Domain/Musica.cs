@@ -5,19 +5,19 @@ public class Musica
 {
     //ATRIBUTOS
     public string NomeDaMusica { get; private set; } 
-    public Artista ArtistaDaMusica { get; private set; }
+    public Banda BandaDaMusica { get; private set; }
     public int Duracao { get; private set; }
     public bool Disponivel { get; private set; }
     public Genero GeneroDaMusica { get; private set; }
     
     //propriedade de leitura
-    public string DescricaoResumida => $"A música {NomeDaMusica} pertence ao artista {ArtistaDaMusica.Nome}";
+    public string DescricaoResumida => $"A música {NomeDaMusica} pertence ao artista {BandaDaMusica.NomeDaBanda}";
 
     //CONSTRUTOR
-    public Musica(string nomeDaMusica, Artista artistaDaMusica, int duracao, Genero genero)
+    public Musica(string nomeDaMusica, Banda bandaDaMusica, int duracao, Genero genero)
     {
         this.NomeDaMusica = nomeDaMusica;
-        this.ArtistaDaMusica = artistaDaMusica;
+        this.BandaDaMusica = bandaDaMusica;
         this.Duracao = duracao;
         this.Disponivel = true;
         this.GeneroDaMusica = genero;
@@ -27,7 +27,7 @@ public class Musica
     public void ExibirFichaTecnica()
     {
         Console.WriteLine("Nome da Música: {0}", NomeDaMusica);
-        Console.WriteLine("Artista: {0}", ArtistaDaMusica.Nome);
+        Console.WriteLine("Artista: {0}", BandaDaMusica.NomeDaBanda);
         Console.WriteLine("Duração: {0}", Duracao);
         if (Disponivel)
         {
@@ -41,6 +41,6 @@ public class Musica
 
     public void ExibeArtista()
     {
-        Console.WriteLine($"Música / Artista: {NomeDaMusica} - {ArtistaDaMusica.Nome}");
+        Console.WriteLine($"Música / Artista: {NomeDaMusica} - {BandaDaMusica.NomeDaBanda}");
     }
 }
