@@ -2,22 +2,33 @@ namespace ScreenSound.Application;
 
 using ScreenSound.Domain;
 
-public class AlbumService
+class AlbumService
 {
-    public static List<Album> _listaDeTodosOsAlbuns = new List<Album>();
+    private readonly SystemContext _systemContext;
+    private readonly BandaService _bandaService;
 
-    private readonly BandaService _bandaService = new BandaService();
+    public AlbumService(SystemContext context, BandaService bandaService)
+    {
+        _systemContext = context;
+        _bandaService = bandaService;
+    }
 
+    // public void CriaERegistraAlbum(string nomeDoAlbum, string bandaDoAlbum, int anoDeLancamento)
+    // {
+    //     // Em vez de fazer o '?? new Banda', use o especialista:
+    //     // Este método já busca, cria se não existir E ADICIONA no contexto.
+    //     Banda bandaFinal = _bandaService.ObterBandaParaVinculo(bandaDoAlbum);
+
+    //     Album novoAlbum = new Album(nomeDoAlbum, bandaFinal, anoDeLancamento);
+    //     _systemContext._listaDeTodosOsAlbuns.Add(novoAlbum);
+    // }
     public void CriaERegistraAlbum(string nomeDoAlbum, string bandaDoAlbum, int anoDeLancamento)
     {
-        // Busca na lisaDeTodosOsArtistas o nome do artista usado como parametro para criacao do album
-        Banda? bandaEncontrada = _bandaService.BuscarBandaPorNome(bandaDoAlbum);  
-
         // Se não existir, cria o artista novo
-        Banda bandaFinal = bandaEncontrada ?? new Banda(bandaDoAlbum);
+        Banda bandaFinal = _bandaService.ObterOuCriarBanda(bandaDoAlbum);
 
-        // Instancia o Album
-        Album novoAlbum = new Album(nomeDoAlbum, bandaFinal, anoDeLancamento);
-        _listaDeTodosOsAlbuns.Add(novoAlbum);
+        _systemContext.ListaDeTodosOsAlbuns.Add(
+            new Album(nomeDoAlbum, bandaFinal, anoDeLancamento)
+        );
     }
 }

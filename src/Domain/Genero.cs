@@ -3,19 +3,16 @@ public class Genero
 {
     // ATRIBUTOS
     public string NomeDoGenero { get; private set; }
-    public List<Musica> ListaDeMusicasDoGenero { get; private set; }
+    private List<Musica> _listaDeMusicasDoGenero = new();
+    public IReadOnlyList<Musica> ListaDeMusicasDoGenero => _listaDeMusicasDoGenero.AsReadOnly();
 
     // CONSTRUTOR
-    public Genero(string nomeDoGenero)
-    {
-        this.NomeDoGenero = nomeDoGenero;
-        this.ListaDeMusicasDoGenero = new List<Musica>();
-    }
+    public Genero(string nomeDoGenero) { NomeDoGenero = nomeDoGenero; }
 
     // MÉTODOS
     public void AdicionaMusicaAoGenero(Musica musica)
     {
-        ListaDeMusicasDoGenero.Add(musica);
+        _listaDeMusicasDoGenero.Add(musica);
     }
 
     public void ExibirMusicasDoGenero()

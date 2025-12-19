@@ -10,7 +10,6 @@ class Podcast
     public int TotalDeEpisodios => _episodios.Count;
     public IReadOnlyCollection<EpisodioDePodcast> ListaDeEpisodiosDoPodcast => _episodios.AsReadOnly();
 
-
     // CONSTRUTOR
     public Podcast(string nomeDoPodcast, string host)
     {

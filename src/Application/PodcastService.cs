@@ -2,14 +2,13 @@ namespace ScreenSound.Application;
 
 class PodcastService
 {
-    public static List<Podcast> _listaDeTodosOsPodcasts = new List<Podcast>();
+    private readonly SystemContext _context;
 
-    //caso for usar o service de outra classe, deve instanciar ele aqui
-
-    // REGRAS DE NEGOCIO
-    // 1. Todo podcast é criado sem episodios. 
-    // 2. Eles sao adicionados posteriormente.
-
+    public PodcastService(SystemContext context)
+    {
+        _context = context;
+    }
+    
     //Valida as entradas do construtor de Podcast
     public void CriarPodcast(string nomeDoPodcast, string host)
     {
@@ -23,7 +22,7 @@ class PodcastService
     public void ValidaAdicionarEpisodioNoPodcast(EpisodioDePodcast episodioDePodcast, string podcastASerIncrementado)
     {
         // Nao deve ser possivel adicionar um episodio a um podcast que nao existe
-        var podcastEncontrado = _listaDeTodosOsPodcasts.FirstOrDefault(p => p.NomeDoPodcast.Equals(
+        var podcastEncontrado = _context.ListaDeTodosOsPodcasts.FirstOrDefault(p => p.NomeDoPodcast.Equals(
         podcastASerIncrementado, StringComparison.OrdinalIgnoreCase));
         
         if (podcastEncontrado == null)

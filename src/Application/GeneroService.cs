@@ -1,26 +1,41 @@
 namespace ScreenSound.Application;
 class GeneroService
 {
-    private static List<Genero> _generosCadastrados = new List<Genero>();
-
+    private readonly SystemContext _context;
+    public GeneroService(SystemContext context)
+    {
+        _context = context;
+    }
     //funcao que retorna um objeto confirmando ou nao se o nomeDoGeneroProcurado corresponde a um Genero
     public Genero? BuscarGeneroPorNome(string nomeDoGeneroProcurado)
     {
-        return _generosCadastrados.FirstOrDefault(g => g.NomeDoGenero.Equals(nomeDoGeneroProcurado, StringComparison.OrdinalIgnoreCase));
+        return _context.ListaDeTodosOsGeneros.FirstOrDefault(g => g.NomeDoGenero.Equals(nomeDoGeneroProcurado, StringComparison.OrdinalIgnoreCase));
     }
 
     public void CriarGenero(string nomeDoGenero)
     {
-        // Validações básicas de entrada
-        //verifica se o parametro informado nao é nulo
         if (string.IsNullOrWhiteSpace(nomeDoGenero)) throw new ArgumentNullException("Gênero nao pode ser null");
 
-        //verifica se o parametro informado já não está cadastrado. Nao podem ter dois generos iguais
         if (BuscarGeneroPorNome(nomeDoGenero) != null) throw new InvalidOperationException($"O gênero '{nomeDoGenero}' já está cadastrado.");
 
-        //chama o construtor
-        Genero novoGenero = new Genero(nomeDoGenero);
+        _context.ListaDeTodosOsGeneros.Add(new Genero(nomeDoGenero));
+    }
 
-        _generosCadastrados.Add(novoGenero);
+    public Genero ObterOuCriarGenero(string nomeDoGeneroParaVincular)
+    {
+        var genero = BuscarGeneroPorNome(nomeDoGeneroParaVincular);
+
+        if (genero == null)
+        {
+            genero = new Genero(nomeDoGeneroParaVincular);
+            _context.ListaDeTodosOsGeneros.Add(genero);
+        }
+
+        return genero;
+    }
+
+    public IEnumerable<Genero> ListarTodosOsGeneros()
+    {
+        return _context.ListaDeTodosOsGeneros;
     }
 }

@@ -2,13 +2,19 @@ using ScreenSound.Domain;
 namespace ScreenSound.Application;
 class BandaService
 {
-     public static List<Banda> _listaDeTodasAsBandas = new List<Banda>();
+    private readonly SystemContext _context; 
+
+    public BandaService(SystemContext context)
+    {
+        _context = context;
+    }
+    
 
     // CONSULTA SIMPLES (Para uso no AlbumService)
     // Útil para apenas checar se algo existe sem causar exceptions.
     public Banda? BuscarBandaPorNome(string nomeDoArtistaProcurado)
     {
-        return _listaDeTodasAsBandas
+        return _context.ListaDeTodasAsBandas
             .FirstOrDefault(a => a.NomeDaBanda.Equals(nomeDoArtistaProcurado, StringComparison.OrdinalIgnoreCase));
     }
 
@@ -21,19 +27,19 @@ class BandaService
         if (BuscarBandaPorNome(nomeDoaBandaASerRegistrada) != null)
             throw new InvalidOperationException($"A Banda'{nomeDoaBandaASerRegistrada}' já está no sistema.");
 
-        _listaDeTodasAsBandas.Add(new Banda(nomeDoaBandaASerRegistrada));
+        _context.ListaDeTodasAsBandas.Add(new Banda(nomeDoaBandaASerRegistrada));
     }
 
-    // (Para o MusicaService)
+    // Para demais services.
     // O sistema obtem o Artista, sem exceptions. Se não existir, cria um novo.
-    public Banda ObterBandaParaVinculo(string nomeDaBandaParaVincular)
+    public Banda ObterOuCriarBanda(string nomeDaBandaParaVincular)
     {
         var banda = BuscarBandaPorNome(nomeDaBandaParaVincular);
         
         if (banda == null)
         {
             banda = new Banda(nomeDaBandaParaVincular);
-            _listaDeTodasAsBandas.Add(banda);
+            _context.ListaDeTodasAsBandas.Add(banda);
         }
         
         return banda;
