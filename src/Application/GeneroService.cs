@@ -1,5 +1,3 @@
-using System.Runtime.Serialization.Formatters;
-
 namespace ScreenSound.Application;
 class GeneroService
 {

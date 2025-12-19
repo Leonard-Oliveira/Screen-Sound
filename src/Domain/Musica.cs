@@ -1,8 +1,9 @@
-using System.Diagnostics;
 namespace ScreenSound.Domain;
-
 public class Musica
 {
+    //REGRAS DE NEGOCIO
+    //Sempre que uma musica for criada ela deve ter uma banda vinculada a ela
+
     //ATRIBUTOS
     public string NomeDaMusica { get; private set; } 
     public Banda BandaDaMusica { get; private set; }

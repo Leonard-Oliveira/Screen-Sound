@@ -1,8 +1,5 @@
 namespace ScreenSound.Application;
-
 using ScreenSound.Domain;
-
-
 public class MusicaService
 {
     public static List<Musica> _listaDeTodasAsMusicas = new List<Musica>();
