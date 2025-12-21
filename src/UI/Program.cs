@@ -215,57 +215,70 @@ using System.Security.AccessControl;
 
 //---------------------Testes-----------------------
 using ScreenSound.Application;
+using ScreenSound.Domain;
 
-Console.Clear();
+// 1. Setup
+var contexto = new SystemContext();
+var generoService = new GeneroService(contexto);
 
-// Instanciando os serviços necessários
-var musicaService = new MusicaService();
-var bandaService = new BandaService();
+Console.WriteLine("=== Testes de Unidade: GeneroService ===\n");
 
-Console.WriteLine("======================================================");
-Console.WriteLine("🎸 TESTE SCREENSOUND - VERSÃO COM GÊNEROS 🎸");
-Console.WriteLine("======================================================\n");
-
+// --- CASO DE TESTE 1: Criação Manual com Sucesso ---
+Console.WriteLine("Teste 1: Criar novo género (Manual)");
 try 
 {
-    // Agora o método RegistrarNovaMusica pede 4 parâmetros: 
-    // (Nome, Artista, Duração, Gênero)
-
-    Console.WriteLine("Simulando cadastros...");
-
-    // Linkin Park - Nu Metal
-    musicaService.RegistrarNovaMusica("In the End", "Linkin Park", 216, "Nu Metal");
-    musicaService.RegistrarNovaMusica("Numb", "Linkin Park", 185, "Nu Metal");
-
-    // Iron Maiden - Heavy Metal
-    musicaService.RegistrarNovaMusica("The Trooper", "Iron Maiden", 252, "Heavy Metal");
-    musicaService.RegistrarNovaMusica("Aces High", "Iron Maiden", 271, "Heavy Metal");
-
-    // Nightwish - Symphonic Metal
-    musicaService.RegistrarNovaMusica("Nemo", "Nightwish", 276, "Symphonic Metal");
-
-    Console.WriteLine("✅ Carga de dados realizada!\n");
-
-    // --- RELATÓRIO DE CONFERÊNCIA ---
-    Console.WriteLine("======================================================");
-    Console.WriteLine("📋 LISTAGEM COMPLETA (Música -> Artista -> Gênero)");
-    Console.WriteLine("======================================================");
-
-    foreach (var musica in MusicaService._listaDeTodasAsMusicas)
+    generoService.CriarGenero("Rock");
+    generoService.CriarGenero("Jazz");
+    
+    var generoRecuperado = generoService.BuscarGeneroPorNome("Rock");
+    if (generoRecuperado != null) 
     {
-        // Acessando as propriedades encadeadas que criamos
-        string nome = musica.NomeDaMusica.PadRight(15);
-        string banda = musica.BandaDaMusica.NomeDaBanda.PadRight(15);
-        string genero = musica.GeneroDaMusica.NomeDoGenero;
-
-        Console.WriteLine($"🎵 {nome} | 🎤 {banda} | 🏷️ {genero}");
+        Console.WriteLine($"[SUCESSO] Género '{generoRecuperado.NomeDoGenero}' registado corretamente.");
     }
-}
-catch (Exception ex)
+} 
+catch (Exception ex) { Console.WriteLine($"[ERRO]: {ex.Message}"); }
+
+
+// --- CASO DE TESTE 2: Impedir Duplicados ---
+Console.WriteLine("\nTeste 2: Tentar duplicar um género");
+try 
 {
-    Console.WriteLine($"\n⚠️ Erro detectado: {ex.Message}");
+    // Tentando criar 'rock' (minúsculo) para testar o IgnoreCase que implementou
+    generoService.CriarGenero("rock"); 
+} 
+catch (InvalidOperationException ex) 
+{
+    Console.WriteLine($"[SUCESSO] O sistema impediu a duplicata: {ex.Message}");
 }
 
-Console.WriteLine("\n======================================================");
-Console.WriteLine("🏁 TESTE FINALIZADO");
-Console.WriteLine("======================================================");
+
+// --- CASO DE TESTE 3: Criação Automática (ObterOuCriar) ---
+Console.WriteLine("\nTeste 3: ObterOuCriar (Usado pelo MusicaService)");
+// Se o género não existe, o método deve criar e adicionar ao contexto automaticamente
+var generoNovo = generoService.ObterOuCriarGenero("Lo-fi");
+var existeNoContexto = contexto.ListaDeTodosOsGeneros.Any(g => g.NomeDoGenero == "Lo-fi");
+
+if (existeNoContexto)
+{
+    Console.WriteLine($"[SUCESSO] Género 'Lo-fi' foi criado automaticamente e persistido no contexto.");
+}
+
+
+// --- CASO DE TESTE 4: Validação de Nulos/Vazios ---
+Console.WriteLine("\nTeste 4: Tentar criar género com nome vazio");
+try 
+{
+    generoService.CriarGenero("   ");
+} 
+catch (ArgumentNullException ex) 
+{
+    Console.WriteLine($"[SUCESSO] Validação de nome nulo funcionou: {ex.Message}");
+}
+
+// --- RESUMO FINAL ---
+Console.WriteLine("\n=== Estado Final do Contexto ===");
+Console.WriteLine($"Total de géneros registados: {generoService.ListarTodosOsGeneros().Count()}");
+foreach (var g in generoService.ListarTodosOsGeneros())
+{
+    Console.WriteLine($"- {g.NomeDoGenero}");
+}

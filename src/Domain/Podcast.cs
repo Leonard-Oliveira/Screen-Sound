@@ -1,7 +1,6 @@
 class Podcast
 {
     //REGRAS DE NEGOCIO
-    //Sempre que um podcast for criado ele deve ter um host e um nome vinculados
 
     //ATRIBUTOS
     public string NomeDoPodcast { get; private set; }

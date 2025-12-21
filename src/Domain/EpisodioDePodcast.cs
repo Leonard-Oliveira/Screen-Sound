@@ -1,9 +1,5 @@
 class EpisodioDePodcast
 {   
-    // REGRAS DE NEGOCIO
-    // Sempre que um episodio for criado ele deve ter um numero, titulo, duracao e resumo vinculados
-    // Todo episodio dever vinculado a um podcast (fazer na classe Podcast)
-    
     // ATRIBUTOS
     public int NumeroDoEpisodio { get; private set; }
     public string TituloDoEpisodio { get; private set; }
@@ -13,9 +9,9 @@ class EpisodioDePodcast
     public Podcast PodcastVinculado { get; private set; }
 
     // CONSTRUTOR
-   public EpisodioDePodcast(string tituloDoEpisodio, int duracao, string resumoDoEpisodio, Podcast podcastVinculado) 
+    public EpisodioDePodcast(int numeroDoEpisodio, string tituloDoEpisodio, int duracao, string resumoDoEpisodio, Podcast podcastVinculado) 
     {
-        //NumeroDoEpisodio = é atribuido automaticamente ao adicionar o episodio ao podcast
+        this.NumeroDoEpisodio = numeroDoEpisodio;
         this.TituloDoEpisodio = tituloDoEpisodio;
         this.Duracao = duracao;
         this.ResumoDoEpisodio = resumoDoEpisodio;
