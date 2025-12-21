@@ -14,11 +14,11 @@ internal class Musica
     //CONSTRUTOR
     public Musica(string nomeDaMusica, Banda bandaDaMusica, int duracao, Genero genero)
     {
-        this.NomeDaMusica = nomeDaMusica;
-        this.BandaDaMusica = bandaDaMusica;
-        this.Duracao = duracao;
-        this.Disponivel = true;
-        this.GeneroDaMusica = genero;
+        NomeDaMusica = nomeDaMusica;
+        BandaDaMusica = bandaDaMusica;
+        Duracao = duracao;
+        Disponivel = true;
+        GeneroDaMusica = genero;
     }
     
     //MÉTODOS
