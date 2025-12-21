@@ -1,8 +1,7 @@
 namespace ScreenSound.Application;
-
 using ScreenSound.Domain;
 
-class AlbumService
+internal class AlbumService
 {
     private readonly SystemContext _systemContext;
     private readonly BandaService _bandaService;

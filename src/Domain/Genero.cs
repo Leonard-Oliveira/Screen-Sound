@@ -1,5 +1,5 @@
-using ScreenSound.Domain;
-public class Genero
+namespace ScreenSound.Domain;
+internal class Genero
 {
     // ATRIBUTOS
     public string NomeDoGenero { get; private set; }

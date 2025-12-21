@@ -1,6 +1,6 @@
 namespace ScreenSound.Application;
 using ScreenSound.Domain;
-class MusicaService
+internal class MusicaService
 {
     // Acessa o "bancod de dados"
     private readonly SystemContext _context;

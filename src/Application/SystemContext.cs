@@ -1,6 +1,6 @@
 namespace ScreenSound.Application;
 using ScreenSound.Domain;
-class SystemContext
+internal class SystemContext
 {
     public static string ApplicationName = "Screen Sound";
     public static string Version = "1.0.0";

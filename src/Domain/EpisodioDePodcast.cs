@@ -1,4 +1,5 @@
-class EpisodioDePodcast
+namespace ScreenSound.Domain;
+internal class EpisodioDePodcast
 {   
     // ATRIBUTOS
     public int NumeroDoEpisodio { get; private set; }

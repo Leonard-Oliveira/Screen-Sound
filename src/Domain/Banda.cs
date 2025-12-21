@@ -1,5 +1,5 @@
 namespace ScreenSound.Domain;
-public class Banda
+internal class Banda
 {
     //REGRAS DE NEGOCIO
     

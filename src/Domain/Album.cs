@@ -1,5 +1,5 @@
 namespace ScreenSound.Domain;
-public class Album
+internal class Album
 {   
     // ATRIBUTOS
     public string NomeDoAlbum { get; private set; }

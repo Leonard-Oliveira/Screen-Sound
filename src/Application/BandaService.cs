@@ -1,6 +1,6 @@
-using ScreenSound.Domain;
 namespace ScreenSound.Application;
-class BandaService
+using ScreenSound.Domain;
+internal class BandaService
 {
     private readonly SystemContext _context; 
 

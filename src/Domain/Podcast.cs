@@ -1,4 +1,5 @@
-class Podcast
+namespace ScreenSound.Domain;
+internal class Podcast
 {
     //REGRAS DE NEGOCIO
 
