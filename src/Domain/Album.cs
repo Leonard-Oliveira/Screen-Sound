@@ -10,10 +10,10 @@ internal class Album
     // CONSTRUTOR
     public Album(string albumName, Banda banda, int anoDeLancamento)
     {
-        this.NomeDoAlbum = albumName;
-        this.BandaDoAlbum = banda;
-        this.AnoDeLancamento = anoDeLancamento;
-        this.MusicasDoAlbum = new List<Musica>();
+        NomeDoAlbum = albumName;
+        BandaDoAlbum = banda;
+        AnoDeLancamento = anoDeLancamento;
+        MusicasDoAlbum = new List<Musica>();
     }
 
     public void AdicionaMusicaAoAlbum(Musica musica)
