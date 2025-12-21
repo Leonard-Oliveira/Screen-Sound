@@ -44,4 +44,14 @@ internal class BandaService
         
         return banda;
     }
+
+    public void AvaliaBanda(int nota, string nomeDaBanda)
+    {
+        if (nota < 1 || nota > 10) throw new ArgumentException("Valor de nota atribuído é inválido. Valor deve ser 1-10");
+
+        var banda = _context.ListaDeTodasAsBandas.FirstOrDefault(b => b.NomeDaBanda.Equals(nomeDaBanda, StringComparison.OrdinalIgnoreCase));
+        if (banda == null) throw new ArgumentException("Banda Nao encontrada");
+
+        banda.AdicionarAvaliacao(new Avaliacao(nota));
+    }
 }
