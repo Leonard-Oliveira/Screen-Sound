@@ -11,9 +11,9 @@ internal class Banda
     //CONSTRUTOR
     public Banda(string nome)
     {
-        this.NomeDaBanda = nome;
-        this.ListaDeMusicasDaBanda = new List<Musica>();
-        this.ListaDeAlbunsDaBanda = new List<Album>();
+        NomeDaBanda = nome;
+        ListaDeMusicasDaBanda = new List<Musica>();
+        ListaDeAlbunsDaBanda = new List<Album>();
     }
 
     //MÉTODOS
