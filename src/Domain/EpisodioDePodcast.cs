@@ -12,12 +12,12 @@ internal class EpisodioDePodcast
     // CONSTRUTOR
     public EpisodioDePodcast(int numeroDoEpisodio, string tituloDoEpisodio, int duracao, string resumoDoEpisodio, Podcast podcastVinculado) 
     {
-        this.NumeroDoEpisodio = numeroDoEpisodio;
-        this.TituloDoEpisodio = tituloDoEpisodio;
-        this.Duracao = duracao;
-        this.ResumoDoEpisodio = resumoDoEpisodio;
-        this.PodcastVinculado =  podcastVinculado;
-        this.ListaDeConvidados = new List<string>();
+        NumeroDoEpisodio = numeroDoEpisodio;
+        TituloDoEpisodio = tituloDoEpisodio;
+        Duracao = duracao;
+        ResumoDoEpisodio = resumoDoEpisodio;
+        PodcastVinculado = podcastVinculado;
+        ListaDeConvidados = new List<string>();
     }
 
     // MÉTODOS
