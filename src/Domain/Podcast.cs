@@ -16,8 +16,8 @@ internal class Podcast
         if (string.IsNullOrWhiteSpace(nomeDoPodcast)) throw new ArgumentException("O nome do podcast é obrigatório.");
         if (string.IsNullOrWhiteSpace(host)) throw new ArgumentException("O host é obrigatório.");
         
-        this.NomeDoPodcast = nomeDoPodcast;
-        this.Host = host;
+        NomeDoPodcast = nomeDoPodcast;
+        Host = host;
     }
 
 
