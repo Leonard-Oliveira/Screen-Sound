@@ -4,12 +4,10 @@ using ScreenSound.Domain;
 internal class PodcastService
 {
     private readonly SystemContext _context;
-
     public PodcastService(SystemContext context)
     {
         _context = context;
     }
-    
     //Valida as entradas do construtor de Podcast
     public void CriarPodcast(string nomeDoPodcast, string host)
     {
@@ -18,6 +16,7 @@ internal class PodcastService
 
         // Podcast é criado. TotalDeEpisodios e ListaDeEpisodiosDoPodcast iniciam com valor padrao.
         Podcast novoPodcast = new Podcast(nomeDoPodcast, host);
+        _context.ListaDeTodosOsPodcasts.Add(novoPodcast);
     }
 
     public void ValidaAdicionarEpisodioNoPodcast(EpisodioDePodcast episodioDePodcast, string podcastASerIncrementado)

@@ -1,15 +1,12 @@
 namespace ScreenSound.Application;
 using ScreenSound.Domain;
 internal class BandaService
-{
-    private readonly SystemContext _context; 
-
-    public BandaService(SystemContext context)
-    {
-        _context = context;
-    }
+{   
+    private SystemContext _context;
     
-
+    // CONSTRUTOR
+    public BandaService(SystemContext context) {_context = context;}
+    
     // CONSULTA SIMPLES (Para uso no AlbumService)
     // Útil para apenas checar se algo existe sem causar exceptions.
     public Banda? BuscarBandaPorNome(string nomeDoArtistaProcurado)

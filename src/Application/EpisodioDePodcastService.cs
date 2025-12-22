@@ -2,8 +2,8 @@ namespace ScreenSound.Application;
 using ScreenSound.Domain;
 internal class EpisodioDePodcastService
 {
-    private readonly SystemContext _context;
-    
+    private SystemContext _context;
+
     public EpisodioDePodcastService(SystemContext context)
     {
         _context = context;

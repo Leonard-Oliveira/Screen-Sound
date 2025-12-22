@@ -1,284 +1,167 @@
-﻿// Screen Sound 
-using System.Numerics;
-using System.Security.AccessControl;
-//using ScreenSound.Domain;
-
-// string mensagemDeBoasVindas = "Boas-Vindas ao Screen Sound!";
-// Dictionary<string, List<int>> listaDebandas = new Dictionary<string, List<int>>(StringComparer.OrdinalIgnoreCase)
-// {
-//     {"Angra", new List<int>() {10, 1, 2} },
-//     {"Hibria", new List<int>() {10, 9, 10}},
-//     {"Nightwish", new List<int>() {9, 8, 9}}
-// };
-
-// //mantem o menu rodando após a execução das funções.
-// bool rodando = true;
-
-// // MAIN
-// TelaInicial();
-
-// // FUNCOES DE LAYOUT
-// void TelaInicial()
-// {
-//     while (rodando)
-//     {
-//         Console.Clear();
-//         ApresentaTituloDoMenu();
-//         ApresentaMenuDeOpcoes();
-//         ProcessaSelecao();
-//     }
-// }
-// void ApresentaTituloDoMenu() // apresenta o titulo de boas vindas e a logo
-// {
-//     Console.WriteLine(@"
-// ░██████╗░█████╗░██████╗░███████╗███████╗███╗░░██╗  ░██████╗░█████╗░██╗░░░██╗███╗░░██╗██████╗░
-// ██╔════╝██╔══██╗██╔══██╗██╔════╝██╔════╝████╗░██║  ██╔════╝██╔══██╗██║░░░██║████╗░██║██╔══██╗
-// ╚█████╗░██║░░╚═╝██████╔╝█████╗░░█████╗░░██╔██╗██║  ╚█████╗░██║░░██║██║░░░██║██╔██╗██║██║░░██║
-// ░╚═══██╗██║░░██╗██╔══██╗██╔══╝░░██╔══╝░░██║╚████║  ░╚═══██╗██║░░██║██║░░░██║██║╚████║██║░░██║
-// ██████╔╝╚█████╔╝██║░░██║███████╗███████╗██║░╚███║  ██████╔╝╚█████╔╝╚██████╔╝██║░╚███║██████╔╝
-// ╚═════╝░░╚════╝░╚═╝░░╚═╝╚══════╝╚══════╝╚═╝░░╚══╝  ╚═════╝░░╚════╝░░╚═════╝░╚═╝░░╚══╝╚═════╝░");
-//     Console.WriteLine($"\n {mensagemDeBoasVindas}");
-// }
-// void ApresentaMenuDeOpcoes() //configura a ordem das opcoes do menu
-// {
-//     Console.WriteLine("\n1. Registrar uma Banda");
-//     Console.WriteLine("2. Mostrar todas as bandas");
-//     Console.WriteLine("3. Avaliar uma banda");
-//     Console.WriteLine("4. Exibir a media de uma banda");
-//     Console.WriteLine("5. Buscar banda na lista");
-//     Console.WriteLine("-1. Sair");
-// }
-// void ApresentaTituloDaFuncao(string tituloDaFuncao)
-// /*configura o layout do titulo da funcao entre asteriscos
-// //exemplo:
-
-// //****************                              
-// //TITULO DA FUNCAO                              
-// /*****************
-
-//  */
-// {
-//     int tamanhoDoTitulo = tituloDaFuncao.Length;
-//     string asteriscos = string.Empty;
-//     Console.WriteLine(asteriscos.PadLeft(tamanhoDoTitulo, '*'));
-//     Console.WriteLine(tituloDaFuncao);
-//     Console.WriteLine(asteriscos.PadLeft(tamanhoDoTitulo, '*') + "\n");
-// }
-
-// void TransicaoDeTelas(string mensagem = "Carregando")
-// {
-//     Console.Write("\n" + mensagem);
-//     for (int i = 0; i < 3; i++)
-//     {
-//         Thread.Sleep(300);
-//         Console.Write(".");
-//     }
-//     Thread.Sleep(150);
-//     Console.Clear();
-// }
-
-// // FUNCOES
-// void ProcessaSelecao()
-// { //Processa a opcao selecionada pelo usuario no menu de opcoes
-//     Console.Write("\nDigite o numero da sua opcao: ");
-
-//     string opcaoEscolhida = Console.ReadLine();
-//     int opcaoEscolhidaNumerica = int.Parse(opcaoEscolhida!);
-
-//     switch (opcaoEscolhidaNumerica)
-//     {
-//         case 1: //Registrar banda
-//             Console.WriteLine("Voce escolheu a opcao " + opcaoEscolhidaNumerica);
-//             RegistraBanda();
-//             break;
-
-//         case 2: //mostrar todas as bandas
-//             Console.WriteLine("Voce escolheu a opcao " + opcaoEscolhidaNumerica);
-//             MostraListaDeBandas();
-
-//             break;
-
-//         case 3: //avaliar uma banda
-//             Console.WriteLine("Voce escolheu a opcao " + opcaoEscolhidaNumerica);
-//             Console.WriteLine("Qual banda voce quer avaliar?");
-//             string bandaSelecionada = Console.ReadLine()!;
-//             if (listaDebandas.TryGetValue(bandaSelecionada, out var notas))
-//             {
-//                 Console.WriteLine("Qual nota voce da para esta banda? ");
-//                 AvaliaBanda(bandaSelecionada);
-//                 TransicaoDeTelas("Retornando ao menu");
-//             }
-            
-//             break;
-
-//         case 4: //exibir media da banda
-//             Console.WriteLine("Voce escolheu a opcao " + opcaoEscolhidaNumerica);
-//             ObtemMediaDaBanda();
-//             break;
-
-//         case 5: //buscar banda na lista
-//             Console.WriteLine("Voce escolheu a opcao " + opcaoEscolhidaNumerica);
-//             BuscaBandaNaLista();
-//             break;
-
-//         case -1:
-//             Console.WriteLine("tchau tchau :)");
-//             break;
-//         default:
-//             Console.WriteLine("Opcao invalida");
-//             break;
-//     }
-// }
-// void RegistraBanda()
-// {
-//     Console.Clear();
-//     ApresentaTituloDaFuncao("Registrar banda");
-
-//     Console.Write("Informe o nome da banda que voce quer registrar: ");
-
-//     string nomeDaBandaAdicionada = Console.ReadLine()!;
-//     listaDebandas.Add(nomeDaBandaAdicionada, new List<int>());
-
-//     Console.WriteLine($"\nVoce registrou a banda {nomeDaBandaAdicionada} ");
-//     Console.Write("\nVoce quer atribuir uma nota para esta banda? S/N"); 
-//     /* inserir validacao de caracteres: somente pode inserir S/N.
-//      * converter entrada sempre pra maiusculo
-//      * */
-//     string opcao = Console.ReadLine()!;
-
-//     if (opcao == "S")
-//     {
-//         Console.WriteLine($"Informe a nota que voce quer atribuir a banda {nomeDaBandaAdicionada}");
-//         AvaliaBanda(nomeDaBandaAdicionada);
-//         Console.WriteLine();
-//     } else
-//     {
-//         Console.WriteLine("\nPressione qualquer tecla para voltar ao menu.");
-//         Console.ReadKey();
-//     }
-
-//     TransicaoDeTelas("Voltando ao menu");
-// }
-// void MostraListaDeBandas()
-// {
-//     Console.Clear();
-//     ApresentaTituloDaFuncao("Bandas Cadastradas no Sistema");
-//     for (int i = 0; i < listaDebandas.Count; i++)
-//     {
-//         Console.WriteLine($"{i + 1}. {listaDebandas.ElementAt(i).Key}");
-//     }
-//     Console.WriteLine("\nDigite qualquer Tecla para voltar ao Menu.");
-//     Console.ReadKey();
-//     TransicaoDeTelas("Voltando ao menu");
-// }
-// void ObtemMediaDaBanda()
-// {
-//     Console.WriteLine("Informe o nome da banda que esta procurando a nota");
-//     string bandaProcurada = Console.ReadLine()!;
-
-//     if (listaDebandas.TryGetValue(bandaProcurada, out var notas))
-//     {
-//         Console.WriteLine($"A media da banda {bandaProcurada} e' {notas.Average():F2}");
-//     }
-//     else
-//     {
-//         Console.WriteLine("banda nao cadastrada");
-//     }
-
-//     Console.WriteLine("Presssione uma tecla para sair");
-//     Console.ReadKey();
-//     TransicaoDeTelas("Voltando ao menu");
-// }
-// void AvaliaBanda(string bandaSelecionada)
-// {
-//     int nota = int.Parse(Console.ReadLine());
-//     listaDebandas[bandaSelecionada].Add(nota);
-//     Console.WriteLine($"\nVoce acaba de avaliar a banda {bandaSelecionada} com a nota nota {nota}.");
-// }
-// void BuscaBandaNaLista()
-// {
-//     Console.Clear();
-//     Console.Write("Informe o nome da banda que voce esta procurando: ");
-//     string bandaProcurada = Console.ReadLine();
-//     if (listaDebandas.TryGetValue(bandaProcurada, out var notas))
-//     {
-//         Console.WriteLine($"\nA banda {bandaProcurada} esta cadastrada!");
-//     }
-//     else
-//     {
-//         Console.WriteLine("\nA banda procurada nao esta cadastrada");
-//     }
-//     Console.WriteLine("\nInsira uma tecla para votar ao menu principal");
-//     Console.ReadKey();
-//     TransicaoDeTelas();
-// }
-
-//---------------------Testes-----------------------
+﻿using ScreenSound.UI.Menus;
 using ScreenSound.Application;
-using ScreenSound.Domain;
 
-// 1. Setup
 var contexto = new SystemContext();
-var generoService = new GeneroService(contexto);
+var bandaService = new BandaService(contexto);
+var albumService = new AlbumService(contexto, bandaService);
 
-Console.WriteLine("=== Testes de Unidade: GeneroService ===\n");
+bool executando = true;
 
-// --- CASO DE TESTE 1: Criação Manual com Sucesso ---
-Console.WriteLine("Teste 1: Criar novo género (Manual)");
-try 
+void ExibirLogo() // apresenta o titulo de boas vindas e a logo
 {
-    generoService.CriarGenero("Rock");
-    generoService.CriarGenero("Jazz");
-    
-    var generoRecuperado = generoService.BuscarGeneroPorNome("Rock");
-    if (generoRecuperado != null) 
+    Console.WriteLine(@"
+
+░██████╗░█████╗░██████╗░███████╗███████╗███╗░░██╗  ░██████╗░█████╗░██╗░░░██╗███╗░░██╗██████╗░
+██╔════╝██╔══██╗██╔══██╗██╔════╝██╔════╝████╗░██║  ██╔════╝██╔══██╗██║░░░██║████╗░██║██╔══██╗
+╚█████╗░██║░░╚═╝██████╔╝█████╗░░█████╗░░██╔██╗██║  ╚█████╗░██║░░██║██║░░░██║██╔██╗██║██║░░██║
+░╚═══██╗██║░░██╗██╔══██╗██╔══╝░░██╔══╝░░██║╚████║  ░╚═══██╗██║░░██║██║░░░██║██║╚████║██║░░██║
+██████╔╝╚█████╔╝██║░░██║███████╗███████╗██║░╚███║  ██████╔╝╚█████╔╝╚██████╔╝██║░╚███║██████╔╝
+╚═════╝░░╚════╝░╚═╝░░╚═╝╚══════╝╚══════╝╚═╝░░╚══╝  ╚═════╝░░╚════╝░░╚═════╝░╚═╝░░╚══╝╚═════╝░
+");
+    Console.WriteLine("Boas vindas ao Screen Sound 2.0!");
+}
+
+void ExibirOpcoesDoMenu()
+{
+    while (executando)
     {
-        Console.WriteLine($"[SUCESSO] Género '{generoRecuperado.NomeDoGenero}' registado corretamente.");
+        Console.Clear();
+        ExibirLogo();
+        Console.WriteLine("\nDigite 1 para registrar uma banda");
+        Console.WriteLine("Digite 2 para registrar o álbum de uma banda");
+        Console.WriteLine("Digite 3 para mostrar todas as bandas");
+        Console.WriteLine("Digite 4 para avaliar uma banda");
+        Console.WriteLine("Digite 5 para exibir os detalhes de uma banda");
+        Console.WriteLine("Digite -1 para sair");
+
+        Console.Write("\nDigite a sua opção: ");
+        string opcaoEscolhida = Console.ReadLine()!;
+        int opcaoEscolhidaNumerica = int.Parse(opcaoEscolhida);
+
+        switch (opcaoEscolhidaNumerica)
+        {
+            case 1:
+                new MenuRegistrarBanda().Executar(bandaService);
+                break;
+            case 2:
+                new MenuRegistrarAlbum().Executar(albumService);
+                break;
+            case 3:
+                // MostrarBandasRegistradas();
+                break;
+            case 4:
+                //AvaliarUmaBanda();
+                break;
+            case 5:
+                //ExibirDetalhes();
+                break;
+            case -1:
+                Console.WriteLine("Tchau tchau :)");
+                break;
+            default:
+                Console.WriteLine("Opção inválida");
+                break;
+        }
     }
-} 
-catch (Exception ex) { Console.WriteLine($"[ERRO]: {ex.Message}"); }
-
-
-// --- CASO DE TESTE 2: Impedir Duplicados ---
-Console.WriteLine("\nTeste 2: Tentar duplicar um género");
-try 
-{
-    // Tentando criar 'rock' (minúsculo) para testar o IgnoreCase que implementou
-    generoService.CriarGenero("rock"); 
-} 
-catch (InvalidOperationException ex) 
-{
-    Console.WriteLine($"[SUCESSO] O sistema impediu a duplicata: {ex.Message}");
 }
 
+// void RegistrarAlbum()
+// {
+//     Console.Clear();
+//     ExibirTituloDaOpcao("Registro de álbuns");
+//     Console.Write("Digite a banda cujo álbum deseja registrar: ");
+//     string nomeDaBanda = Console.ReadLine()!;
+//     Console.Write("Agora digite o título do álbum: ");
+//     string tituloAlbum = Console.ReadLine()!;
+//     /**
+//      * ESPAÇO RESERVADO PARA COMPLETAR A FUNÇÃO
+//      */
+//     Console.WriteLine($"O álbum {tituloAlbum} de {nomeDaBanda} foi registrado com sucesso!");
+//     Thread.Sleep(4000);
+//     Console.Clear();
+//     ExibirOpcoesDoMenu();
+// }
 
-// --- CASO DE TESTE 3: Criação Automática (ObterOuCriar) ---
-Console.WriteLine("\nTeste 3: ObterOuCriar (Usado pelo MusicaService)");
-// Se o género não existe, o método deve criar e adicionar ao contexto automaticamente
-var generoNovo = generoService.ObterOuCriarGenero("Lo-fi");
-var existeNoContexto = contexto.ListaDeTodosOsGeneros.Any(g => g.NomeDoGenero == "Lo-fi");
+// void MostrarBandasRegistradas()
+// {
+//     Console.Clear();
+//     ExibirTituloDaOpcao("Exibindo todas as bandas registradas na nossa aplicação");
 
-if (existeNoContexto)
-{
-    Console.WriteLine($"[SUCESSO] Género 'Lo-fi' foi criado automaticamente e persistido no contexto.");
-}
+//     foreach (string banda in bandasRegistradas.Keys)
+//     {
+//         Console.WriteLine($"Banda: {banda}");
+//     }
 
+//     Console.WriteLine("\nDigite uma tecla para voltar ao menu principal");
+//     Console.ReadKey();
+//     Console.Clear();
+//     ExibirOpcoesDoMenu();
 
-// --- CASO DE TESTE 4: Validação de Nulos/Vazios ---
-Console.WriteLine("\nTeste 4: Tentar criar género com nome vazio");
-try 
-{
-    generoService.CriarGenero("   ");
-} 
-catch (ArgumentNullException ex) 
-{
-    Console.WriteLine($"[SUCESSO] Validação de nome nulo funcionou: {ex.Message}");
-}
+// }
 
-// --- RESUMO FINAL ---
-Console.WriteLine("\n=== Estado Final do Contexto ===");
-Console.WriteLine($"Total de géneros registados: {generoService.ListarTodosOsGeneros().Count()}");
-foreach (var g in generoService.ListarTodosOsGeneros())
-{
-    Console.WriteLine($"- {g.NomeDoGenero}");
-}
+// void ExibirTituloDaOpcao(string titulo)
+// {
+//     int quantidadeDeLetras = titulo.Length;
+//     string asteriscos = string.Empty.PadLeft(quantidadeDeLetras, '*');
+//     Console.WriteLine(asteriscos);
+//     Console.WriteLine(titulo);
+//     Console.WriteLine(asteriscos + "\n");
+// }
+
+// void AvaliarUmaBanda()
+// {
+//     Console.Clear();
+//     ExibirTituloDaOpcao("Avaliar banda");
+//     Console.Write("Digite o nome da banda que deseja avaliar: ");
+//     string nomeDaBanda = Console.ReadLine()!;
+//     if (bandasRegistradas.ContainsKey(nomeDaBanda))
+//     {
+//         Console.Write($"Qual a nota que a banda {nomeDaBanda} merece: ");
+//         int nota = int.Parse(Console.ReadLine()!);
+//         bandasRegistradas[nomeDaBanda].Add(nota);
+//         Console.WriteLine($"\nA nota {nota} foi registrada com sucesso para a banda {nomeDaBanda}");
+//         Thread.Sleep(2000);
+//         Console.Clear();
+//         ExibirOpcoesDoMenu();
+//     }
+//     else
+//     {
+//         Console.WriteLine($"\nA banda {nomeDaBanda} não foi encontrada!");
+//         Console.WriteLine("Digite uma tecla para voltar ao menu principal");
+//         Console.ReadKey();
+//         Console.Clear();
+//         ExibirOpcoesDoMenu();
+//     }
+
+// }
+
+// // void ExibirDetalhes()
+// {
+//     Console.Clear();
+//     ExibirTituloDaOpcao("Exibir detalhes da banda");
+//     Console.Write("Digite o nome da banda que deseja conhecer melhor: ");
+//     string nomeDaBanda = Console.ReadLine()!;
+//     if (bandasRegistradas.ContainsKey(nomeDaBanda))
+//     {
+//         List<int> notasDaBanda = bandasRegistradas[nomeDaBanda];
+//         Console.WriteLine($"\nA média da banda {nomeDaBanda} é {notasDaBanda.Average()}.");
+//         /**
+//         * ESPAÇO RESERVADO PARA COMPLETAR A FUNÇÃO
+//         */
+//         Console.WriteLine("Digite uma tecla para votar ao menu principal");
+//         Console.ReadKey();
+//         Console.Clear();
+//         ExibirOpcoesDoMenu();
+
+//     }
+//     else
+//     {
+//         Console.WriteLine($"\nA banda {nomeDaBanda} não foi encontrada!");
+//         Console.WriteLine("Digite uma tecla para voltar ao menu principal");
+//         Console.ReadKey();
+//         Console.Clear();
+//         ExibirOpcoesDoMenu();
+//     }
+// }
+
+ExibirOpcoesDoMenu();

@@ -2,7 +2,7 @@ namespace ScreenSound.Application;
 using ScreenSound.Domain;
 internal class GeneroService
 {
-    private readonly SystemContext _context;
+    private SystemContext _context;
     public GeneroService(SystemContext context)
     {
         _context = context;

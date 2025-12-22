@@ -1,12 +1,15 @@
 using ScreenSound.Application;
+using ScreenSound.Domain;
 
-internal abstract class Menu
-{   
-    // todos os menus acessam as informacoes de contexto do sistema
-    // facilita a refatoracao e implementacao de novos dados
-    public abstract void Executar(SystemContext context);
+internal abstract class Menu<T>
+{
+    public void Executar(T service)
+    {
+        Console.Clear();
+        ExibirConteudo(service);
+    }
 
-    // Exibe o título do menu com formatação
+    protected abstract void ExibirConteudo(T service);
     protected void ExibirTituloDoMenu(string titulo)
     {
         int tamanhoDoTitulo = titulo.Length;
@@ -15,4 +18,16 @@ internal abstract class Menu
         Console.WriteLine(titulo);
         Console.WriteLine(simbolo.PadLeft(tamanhoDoTitulo, '*') + "\n");
     }
+
+    // protected void TransicaoDeTelas(string mensagem = "Carregando")
+    // {
+    //     Console.Write("\n" + mensagem);
+    //     for (int i = 0; i < 3; i++)
+    //     {
+    //         Thread.Sleep(300);
+    //         Console.Write(".");
+    //     }
+    //     Thread.Sleep(400);
+    //     Console.Clear();
+    // }
 }

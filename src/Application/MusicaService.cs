@@ -1,10 +1,9 @@
 namespace ScreenSound.Application;
+
 using ScreenSound.Domain;
 internal class MusicaService
 {
-    // Acessa o "bancod de dados"
-    private readonly SystemContext _context;
-
+    private SystemContext _context;
     // Permite oa cesso aos metodos do BandaService
     private readonly BandaService _bandaService;
 
@@ -17,7 +16,7 @@ internal class MusicaService
         _bandaService = bandaService;
         _generoService = generoService;
     }
-    
+
     // Esta função centraliza a regra: "Para criar uma música, primeiro resolva o artista solicitando ao ArtistaService a validacao"
     public void RegistrarNovaMusica(string nomeMusica, string nomeDaBanda, int duracao, string nomeGenero)
     {
