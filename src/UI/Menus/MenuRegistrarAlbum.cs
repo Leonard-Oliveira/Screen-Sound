@@ -1,29 +1,58 @@
 using ScreenSound.Application;
+using ScreenSound.Domain;
+using ScreenSound.Utils;
 internal class MenuRegistrarAlbum : Menu<AlbumService>
 {
+    private readonly BandaService _bandaService;
+
+    public MenuRegistrarAlbum(SystemContext context)
+    {
+        _bandaService = new BandaService(context);
+    }
+
     protected override void ExibirConteudo(AlbumService albumService)
     {
-        // primeiro coleta os dados do album
-        // nome do album, nome da banda, ano de lancamento
-        Console.Clear();
-
         ExibirTituloDoMenu("Registrar Álbum");
 
-        Console.Write("Nome do Album: ");
-        string nomeDoAlbum = Console.ReadLine() ?? string.Empty;
+        string bandaDoAlbum = ConsoleUtils.SolicitaTexto("Nome da Banda: ");
+        Banda? bandaEncontrada = _bandaService.BuscarBandaPorNome(bandaDoAlbum);
 
-        Console.Write("Nome da Banda: ");
-        string bandaDoAlbum = Console.ReadLine() ?? string.Empty;
+        while (bandaEncontrada == null)
+        {
+            Console.WriteLine($"\n⚠️ A banda '{bandaDoAlbum}' não está cadastrada.");
+            string opcao = ConsoleUtils.SolicitaTexto("Deseja cadastrá-la agora? (S/N): ").ToUpper();
 
-        Console.Write("Ano de lançamento: ");
-        string anoDeLancamentoString = Console.ReadLine() ?? "0";
-        int anoDeLancamento = int.Parse(anoDeLancamentoString);
-        
-        // depois manda pro service validar e registrar
-        albumService.CriaERegistraAlbum(nomeDoAlbum, bandaDoAlbum, anoDeLancamento);
+            if (opcao.Equals("S", StringComparison.OrdinalIgnoreCase))
+            {
+                _bandaService.RegistraNovaBanda(bandaDoAlbum);
+                bandaEncontrada = _bandaService.BuscarBandaPorNome(bandaDoAlbum);
+                Console.WriteLine("✅ Banda registrada!");
+            }
+            else
+            {
+                return; // Usuário desistiu, encerra o fluxo com segurança
+            }
+        }
 
-        Console.WriteLine($"\nÁlbum '{nomeDoAlbum}' registrado com sucesso!");
-        Console.WriteLine("Pressione qualquer tecla para continuar...");
+        string nomeDoAlbum = ConsoleUtils.SolicitaTexto("Nome do Album: ");
+        int anoDeLancamento = ConsoleUtils.SolicitaInteiro("Ano de lançamento: ");
+
+        try
+        {
+            albumService.RegistraAlbum(nomeDoAlbum, bandaEncontrada, anoDeLancamento);
+            Console.WriteLine($"\n✅ Álbum '{nomeDoAlbum}' de {bandaEncontrada.NomeDaBanda} registrado com sucesso!");
+        }
+        catch (InvalidOperationException ex)
+        {
+            // Captura o erro de duplicidade que o Service lançou
+            Console.WriteLine($"\n❌ Erro de Negócio: {ex.Message}");
+        }
+        catch (Exception ex)
+        {
+            // Captura erros inesperados (ex: falha no sistema)
+            Console.WriteLine($"\n❌ Erro Crítico: {ex.Message}");
+        }
+        Console.WriteLine("\nPressione qualquer tecla para voltar ao menu...");
         Console.ReadKey();
     }
 }
