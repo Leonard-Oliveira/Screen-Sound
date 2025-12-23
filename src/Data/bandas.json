@@ -1,0 +1,156 @@
+[
+  {
+    "NomeDaBanda": "Linkin Park",
+    "Avaliacoes": [{ "Nota": 10 }, { "Nota": 9 }],
+    "ListaDeAlbunsDaBanda": [
+      {
+        "NomeDoAlbum": "Hybrid Theory",
+        "AnoDeLancamento": 2000,
+        "ListaDeMusicasDaBanda": [
+          { "NomeDaMusica": "In the End", "Duracao": 216 },
+          { "NomeDaMusica": "Papercut", "Duracao": 184 }
+        ]
+      }
+    ]
+  },
+  {
+    "NomeDaBanda": "Iron Maiden",
+    "Avaliacoes": [{ "Nota": 10 }],
+    "ListaDeAlbunsDaBanda": [
+      {
+        "NomeDoAlbum": "The Number of the Beast",
+        "AnoDeLancamento": 1982,
+        "ListaDeMusicasDaBanda": [
+          { "NomeDaMusica": "Run to the Hills", "Duracao": 233 }
+        ]
+      }
+    ]
+  },
+  {
+    "NomeDaBanda": "Metallica",
+    "Avaliacoes": [{ "Nota": 9 }, { "Nota": 8 }],
+    "ListaDeAlbunsDaBanda": [
+      {
+        "NomeDoAlbum": "Master of Puppets",
+        "AnoDeLancamento": 1986,
+        "ListaDeMusicasDaBanda": [
+          { "NomeDaMusica": "Battery", "Duracao": 312 },
+          { "NomeDaMusica": "Master of Puppets", "Duracao": 515 }
+        ]
+      }
+    ]
+  },
+  {
+    "NomeDaBanda": "Queen",
+    "Avaliacoes": [{ "Nota": 10 }, { "Nota": 10 }],
+    "ListaDeAlbunsDaBanda": [
+      {
+        "NomeDoAlbum": "A Night at the Opera",
+        "AnoDeLancamento": 1975,
+        "ListaDeMusicasDaBanda": [
+          { "NomeDaMusica": "Bohemian Rhapsody", "Duracao": 354 }
+        ]
+      }
+    ]
+  },
+  {
+    "NomeDaBanda": "Pink Floyd",
+    "Avaliacoes": [{ "Nota": 10 }],
+    "ListaDeAlbunsDaBanda": [
+      {
+        "NomeDoAlbum": "The Dark Side of the Moon",
+        "AnoDeLancamento": 1973,
+        "ListaDeMusicasDaBanda": [
+          { "NomeDaMusica": "Time", "Duracao": 421 },
+          { "NomeDaMusica": "Money", "Duracao": 382 }
+        ]
+      }
+    ]
+  },
+  {
+    "NomeDaBanda": "AC/DC",
+    "Avaliacoes": [{ "Nota": 9 }],
+    "ListaDeAlbunsDaBanda": [
+      {
+        "NomeDoAlbum": "Back in Black",
+        "AnoDeLancamento": 1980,
+        "ListaDeMusicasDaBanda": [
+          { "NomeDaMusica": "Hells Bells", "Duracao": 312 },
+          { "NomeDaMusica": "Back in Black", "Duracao": 255 }
+        ]
+      }
+    ]
+  },
+  {
+    "NomeDaBanda": "Nirvana",
+    "Avaliacoes": [{ "Nota": 8 }],
+    "ListaDeAlbunsDaBanda": [
+      {
+        "NomeDoAlbum": "Nevermind",
+        "AnoDeLancamento": 1991,
+        "ListaDeMusicasDaBanda": [
+          { "NomeDaMusica": "Smells Like Teen Spirit", "Duracao": 301 }
+        ]
+      }
+    ]
+  },
+  {
+    "NomeDaBanda": "Red Hot Chili Peppers",
+    "Avaliacoes": [{ "Nota": 9 }],
+    "ListaDeAlbunsDaBanda": [
+      {
+        "NomeDoAlbum": "Californication",
+        "AnoDeLancamento": 1999,
+        "ListaDeMusicasDaBanda": [
+          { "NomeDaMusica": "Otherside", "Duracao": 255 }
+        ]
+      }
+    ]
+  },
+  {
+    "NomeDaBanda": "Foo Fighters",
+    "Avaliacoes": [{ "Nota": 9 }],
+    "ListaDeAlbunsDaBanda": [
+      {
+        "NomeDoAlbum": "The Colour and the Shape",
+        "AnoDeLancamento": 1997,
+        "ListaDeMusicasDaBanda": [
+          { "NomeDaMusica": "Everlong", "Duracao": 250 }
+        ]
+      }
+    ]
+  },
+  {
+    "NomeDaBanda": "Guns N' Roses",
+    "Avaliacoes": [{ "Nota": 10 }],
+    "ListaDeAlbunsDaBanda": [
+      {
+        "NomeDoAlbum": "Appetite for Destruction",
+        "AnoDeLancamento": 1987,
+        "ListaDeMusicasDaBanda": [
+          { "NomeDaMusica": "Welcome to the Jungle", "Duracao": 274 }
+        ]
+      }
+    ]
+  },
+  { "NomeDaBanda": "The Beatles", "Avaliacoes": [{"Nota": 10}], "ListaDeAlbunsDaBanda": [{"NomeDoAlbum": "Abbey Road", "AnoDeLancamento": 1969, "ListaDeMusicasDaBanda": [{"NomeDaMusica": "Come Together", "Duracao": 259}]}]},
+  { "NomeDaBanda": "Led Zeppelin", "Avaliacoes": [{"Nota": 10}], "ListaDeAlbunsDaBanda": [{"NomeDoAlbum": "Led Zeppelin IV", "AnoDeLancamento": 1971, "ListaDeMusicasDaBanda": [{"NomeDaMusica": "Black Dog", "Duracao": 296}]}]},
+  { "NomeDaBanda": "Black Sabbath", "Avaliacoes": [{"Nota": 9}], "ListaDeAlbunsDaBanda": [{"NomeDoAlbum": "Paranoid", "AnoDeLancamento": 1970, "ListaDeMusicasDaBanda": [{"NomeDaMusica": "Iron Man", "Duracao": 358}]}]},
+  { "NomeDaBanda": "Deep Purple", "Avaliacoes": [{"Nota": 8}], "ListaDeAlbunsDaBanda": [{"NomeDoAlbum": "Machine Head", "AnoDeLancamento": 1972, "ListaDeMusicasDaBanda": [{"NomeDaMusica": "Highway Star", "Duracao": 365}]}]},
+  { "NomeDaBanda": "System of a Down", "Avaliacoes": [{"Nota": 10}], "ListaDeAlbunsDaBanda": [{"NomeDoAlbum": "Toxicity", "AnoDeLancamento": 2001, "ListaDeMusicasDaBanda": [{"NomeDaMusica": "Chop Suey!", "Duracao": 210}]}]},
+  { "NomeDaBanda": "Arctic Monkeys", "Avaliacoes": [{"Nota": 9}], "ListaDeAlbunsDaBanda": [{"NomeDoAlbum": "AM", "AnoDeLancamento": 2013, "ListaDeMusicasDaBanda": [{"NomeDaMusica": "Do I Wanna Know?", "Duracao": 272}]}]},
+  { "NomeDaBanda": "The Killers", "Avaliacoes": [{"Nota": 8}], "ListaDeAlbunsDaBanda": [{"NomeDoAlbum": "Hot Fuss", "AnoDeLancamento": 2004, "ListaDeMusicasDaBanda": [{"NomeDaMusica": "Mr. Brightside", "Duracao": 222}]}]},
+  { "NomeDaBanda": "Radiohead", "Avaliacoes": [{"Nota": 10}], "ListaDeAlbunsDaBanda": [{"NomeDoAlbum": "OK Computer", "AnoDeLancamento": 1997, "ListaDeMusicasDaBanda": [{"NomeDaMusica": "Karma Police", "Duracao": 261}]}]},
+  { "NomeDaBanda": "Muse", "Avaliacoes": [{"Nota": 9}], "ListaDeAlbunsDaBanda": [{"NomeDoAlbum": "Origin of Symmetry", "AnoDeLancamento": 2001, "ListaDeMusicasDaBanda": [{"NomeDaMusica": "New Born", "Duracao": 363}]}]},
+  { "NomeDaBanda": "Evanescence", "Avaliacoes": [{"Nota": 8}], "ListaDeAlbunsDaBanda": [{"NomeDoAlbum": "Fallen", "AnoDeLancamento": 2003, "ListaDeMusicasDaBanda": [{"NomeDaMusica": "Bring Me to Life", "Duracao": 237}]}]},
+  { "NomeDaBanda": "Green Day", "Avaliacoes": [{"Nota": 9}], "ListaDeAlbunsDaBanda": [{"NomeDoAlbum": "American Idiot", "AnoDeLancamento": 2004, "ListaDeMusicasDaBanda": [{"NomeDaMusica": "Holiday", "Duracao": 232}]}]},
+  { "NomeDaBanda": "The Rolling Stones", "Avaliacoes": [{"Nota": 9}], "ListaDeAlbunsDaBanda": [{"NomeDoAlbum": "Let It Bleed", "AnoDeLancamento": 1969, "ListaDeMusicasDaBanda": [{"NomeDaMusica": "Gimme Shelter", "Duracao": 271}]}]},
+  { "NomeDaBanda": "U2", "Avaliacoes": [{"Nota": 8}], "ListaDeAlbunsDaBanda": [{"NomeDoAlbum": "The Joshua Tree", "AnoDeLancamento": 1987, "ListaDeMusicasDaBanda": [{"NomeDaMusica": "With or Without You", "Duracao": 296}]}]},
+  { "NomeDaBanda": "The Who", "Avaliacoes": [{"Nota": 9}], "ListaDeAlbunsDaBanda": [{"NomeDoAlbum": "Who's Next", "AnoDeLancamento": 1971, "ListaDeMusicasDaBanda": [{"NomeDaMusica": "Baba O'Riley", "Duracao": 300}]}]},
+  { "NomeDaBanda": "Aerosmith", "Avaliacoes": [{"Nota": 8}], "ListaDeAlbunsDaBanda": [{"NomeDoAlbum": "Toys in the Attic", "AnoDeLancamento": 1975, "ListaDeMusicasDaBanda": [{"NomeDaMusica": "Walk This Way", "Duracao": 220}]}]},
+  { "NomeDaBanda": "The Doors", "Avaliacoes": [{"Nota": 10}], "ListaDeAlbunsDaBanda": [{"NomeDoAlbum": "The Doors", "AnoDeLancamento": 1967, "ListaDeMusicasDaBanda": [{"NomeDaMusica": "Light My Fire", "Duracao": 426}]}]},
+  { "NomeDaBanda": "Judas Priest", "Avaliacoes": [{"Nota": 9}], "ListaDeAlbunsDaBanda": [{"NomeDoAlbum": "British Steel", "AnoDeLancamento": 1980, "ListaDeMusicasDaBanda": [{"NomeDaMusica": "Breaking the Law", "Duracao": 155}]}]},
+  { "NomeDaBanda": "Scorpions", "Avaliacoes": [{"Nota": 9}], "ListaDeAlbunsDaBanda": [{"NomeDoAlbum": "Crazy World", "AnoDeLancamento": 1990, "ListaDeMusicasDaBanda": [{"NomeDaMusica": "Wind of Change", "Duracao": 310}]}]},
+  { "NomeDaBanda": "Rammstein", "Avaliacoes": [{"Nota": 10}], "ListaDeAlbunsDaBanda": [{"NomeDoAlbum": "Mutter", "AnoDeLancamento": 2001, "ListaDeMusicasDaBanda": [{"NomeDaMusica": "Sonne", "Duracao": 272}]}]},
+  { "NomeDaBanda": "Bon Jovi", "Avaliacoes": [{"Nota": 8}], "ListaDeAlbunsDaBanda": [{"NomeDoAlbum": "Slippery When Wet", "AnoDeLancamento": 1986, "ListaDeMusicasDaBanda": [{"NomeDaMusica": "Livin' on a Prayer", "Duracao": 249}]}]}
+]
