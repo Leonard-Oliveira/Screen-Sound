@@ -19,15 +19,15 @@ internal abstract class Menu<T>
         Console.WriteLine(simbolo.PadLeft(tamanhoDoTitulo, '*') + "\n");
     }
 
-    // protected void TransicaoDeTelas(string mensagem = "Carregando")
-    // {
-    //     Console.Write("\n" + mensagem);
-    //     for (int i = 0; i < 3; i++)
-    //     {
-    //         Thread.Sleep(300);
-    //         Console.Write(".");
-    //     }
-    //     Thread.Sleep(400);
-    //     Console.Clear();
-    // }
+    protected void LoadingTransicao(string mensagem = "Carregando")
+    {
+        Console.Write("\n" + mensagem);
+        for (int i = 0; i < 3; i++)
+        {
+            Thread.Sleep(300);
+            Console.Write(".");
+        }
+        Thread.Sleep(400);
+        Console.Clear();
+    }
 }
