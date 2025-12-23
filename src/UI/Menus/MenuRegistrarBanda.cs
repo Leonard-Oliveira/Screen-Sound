@@ -1,12 +1,13 @@
 namespace ScreenSound.UI.Menus;
 using ScreenSound.Application;
 using ScreenSound.Domain;
+using ScreenSound.Utils;
 
 internal class MenuRegistrarBanda : Menu<BandaService>
 {
     protected override void ExibirConteudo(BandaService bandaService)
     {
-        Console.Clear();
+        ConsoleUtils.LimparTela();
         ExibirTituloDoMenu("Registrar Banda");
 
         Console.Write("Informe o nome da banda que voce quer registrar: ");

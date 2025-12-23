@@ -1,11 +1,12 @@
 using ScreenSound.Application;
 using ScreenSound.Domain;
+using ScreenSound.Utils;
 
 internal abstract class Menu<T>
 {
     public void Executar(T service)
     {
-        Console.Clear();
+        ConsoleUtils.LimparTela();
         ExibirConteudo(service);
     }
 
@@ -28,6 +29,6 @@ internal abstract class Menu<T>
             Console.Write(".");
         }
         Thread.Sleep(400);
-        Console.Clear();
+        ConsoleUtils.LimparTela();
     }
 }

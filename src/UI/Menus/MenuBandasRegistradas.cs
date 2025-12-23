@@ -12,13 +12,16 @@ internal class MenuBandasRegistradas : Menu<BandaService>
     }
     protected override void ExibirConteudo(BandaService bandaService)
     {
-        Console.Clear();
+        int index = 1;
+        ConsoleUtils.LimparTela();
         ExibirTituloDoMenu("Exibindo todas as bandas registradas na nossa aplicação");
         foreach (var banda in _systemContext.ListaDeTodasAsBandas)
         {
-            Console.WriteLine(banda.NomeDaBanda);
+            Console.WriteLine($"{index}. {banda.NomeDaBanda}");
+            index++;
         }
-
+        Console.WriteLine("Pressione qualquer tecla para retornar ao menu principal");
+        Console.ReadKey();
         LoadingTransicao();
     }
 }

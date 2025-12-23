@@ -1,13 +1,14 @@
 namespace ScreenSound.Domain;
 internal class Album
 {   
-    // ATRIBUTOS
     public string NomeDoAlbum { get; private set; }
+
     public Banda BandaDoAlbum { get; private set; } 
+
     public int AnoDeLancamento { get; private set; }
+
     public List<Musica> MusicasDoAlbum { get; private set; }
 
-    // CONSTRUTOR
     public Album(string albumName, Banda banda, int anoDeLancamento)
     {
         if (string.IsNullOrWhiteSpace(albumName)) throw new ArgumentException("O nome do álbum não pode ser vazio.");

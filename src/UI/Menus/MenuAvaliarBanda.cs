@@ -1,4 +1,3 @@
-using System.Runtime.Intrinsics.Arm;
 using ScreenSound.Application;
 using ScreenSound.Domain;
 using ScreenSound.Utils;

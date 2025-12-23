@@ -1,26 +1,29 @@
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+
 namespace ScreenSound.Domain;
+
 internal class Musica
 {
     //ATRIBUTOS
-    public string NomeDaMusica { get; private set; } 
+    public string NomeDaMusica { get; private set; }
     public Banda BandaDaMusica { get; private set; }
     public int Duracao { get; private set; }
-    public bool Disponivel { get; private set; }
+    public bool Disponivel { get; private set; } = false;
+
     public Genero GeneroDaMusica { get; private set; }
-    
+
     //propriedade de leitura
     public string DescricaoResumida => $"A música {NomeDaMusica} pertence ao artista {BandaDaMusica.NomeDaBanda}";
 
-    //CONSTRUTOR
     public Musica(string nomeDaMusica, Banda bandaDaMusica, int duracao, Genero genero)
     {
         NomeDaMusica = nomeDaMusica;
         BandaDaMusica = bandaDaMusica;
         Duracao = duracao;
-        Disponivel = true;
         GeneroDaMusica = genero;
     }
-    
+
     //MÉTODOS
     public void ExibirFichaTecnica()
     {

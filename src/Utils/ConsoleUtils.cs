@@ -1,4 +1,6 @@
 namespace ScreenSound.Utils;
+using ScreenSound.Application;
+
 public static class ConsoleUtils
 {
     public static string SolicitaTexto(string pergunta)
@@ -35,5 +37,18 @@ public static class ConsoleUtils
         } while (!sucesso);
 
         return entradaConvertida;
+    }
+
+    public static void LimparTela()
+    {
+        // Só limpa se NÃO estiver em modo debug
+        if (!SystemContext.IsDebugMode)
+        {
+            Console.Clear();
+        }
+        else
+        {
+            Console.WriteLine("\n--- [DEBUG: Clear Ignorado] ---\n");
+        }
     }
 }

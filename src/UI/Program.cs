@@ -4,6 +4,9 @@ using ScreenSound.Utils;
 using ScreenSound.UI;
 
 var contexto = new SystemContext();
+
+contexto.SemeiaDados();
+
 var bandaService = new BandaService(contexto);
 var albumService = new AlbumService(contexto);
 
@@ -27,7 +30,7 @@ void ExibirOpcoesDoMenu()
 {
     while (executando)
     {
-        Console.Clear();
+        ConsoleUtils.LimparTela();
         ExibirLogo();
         Console.WriteLine("\nDigite 1 para registrar uma banda");
         Console.WriteLine("Digite 2 para registrar o álbum de uma banda");
@@ -106,5 +109,5 @@ void ExibirOpcoesDoMenu()
 //         ExibirOpcoesDoMenu();
 //     }
 // }
-
+Console.WriteLine($"DEBUG: Total de bandas no contexto: {contexto.ListaDeTodasAsBandas.Count}");
 ExibirOpcoesDoMenu();
