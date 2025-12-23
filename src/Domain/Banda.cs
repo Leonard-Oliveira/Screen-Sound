@@ -29,7 +29,7 @@ internal class Banda
         ListaDeAlbunsDaBanda.Add(album);
     }
 
-    public void AdicionarAvaliacao(Avaliacao avaliacao)
+    public void AtribuiAvaliacao(Avaliacao avaliacao)
     {
         _avaliacoes.Add(avaliacao);
     }

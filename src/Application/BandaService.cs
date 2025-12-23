@@ -25,12 +25,10 @@ internal class BandaService
     /// <summary>
     /// Atribui uma nota a uma banda existente após validar os critérios de pontuação.
     /// </summary>
-    public void AvaliaBanda(Banda banda, int nota)
+    public void AvaliaBanda(Banda banda, Avaliacao avaliacao)
     {
         ArgumentNullException.ThrowIfNull(banda);
-        if (nota < 1 || nota > 10) throw new ArgumentOutOfRangeException(
-            nameof(nota), nota, "Valor de nota atribuído é inválido. Valor deve ser 1-10");
-    
-        banda.AdicionarAvaliacao(new Avaliacao(nota));
+        ArgumentNullException.ThrowIfNull(avaliacao);
+        banda.AtribuiAvaliacao(avaliacao);
     }
 }

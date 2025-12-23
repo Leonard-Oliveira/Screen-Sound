@@ -5,7 +5,7 @@ internal class Avaliacao
     // CONSTRUTOR
     public Avaliacao(int nota)
     {
-        if (nota < 1 || nota > 5) throw new ArgumentOutOfRangeException(nameof(nota), "A nota deve estar entre 1 e 5.");
+        if (nota < 1 || nota > 10) throw new ArgumentOutOfRangeException(nameof(nota), "A nota deve estar entre 1 e 10.");
         Nota = nota;
     }
 }
