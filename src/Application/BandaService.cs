@@ -2,53 +2,35 @@ namespace ScreenSound.Application;
 using ScreenSound.Domain;
 internal class BandaService
 {   
-    private SystemContext _context;
-    
-    // CONSTRUTOR
+    private readonly SystemContext _context;
     public BandaService(SystemContext context) {_context = context;}
     
-    // CONSULTA SIMPLES (Para uso no AlbumService)
-    // Útil para apenas checar se algo existe sem causar exceptions.
-    public Banda? BuscarBandaPorNome(string nomeDoArtistaProcurado)
+    /// <summary>
+    /// Realiza uma busca segura que retorna null caso a banda não seja encontrada.
+    /// </summary>
+    public Banda? BuscarBandaPorNome(string nomeDaBanda) => 
+        _context.ListaDeTodasAsBandas.FirstOrDefault(a => a.NomeDaBanda
+            .Equals(nomeDaBanda, StringComparison.OrdinalIgnoreCase));
+
+    /// <summary>
+    /// Registra uma nova banda garantindo que não haja duplicidade no sistema.
+    /// </summary>
+    /// <exception cref="InvalidOperationException">Lançada se a banda já existir.</exception>
+    public void RegistraNovaBanda(string nomeDaBanda)
     {
-        return _context.ListaDeTodasAsBandas
-            .FirstOrDefault(a => a.NomeDaBanda.Equals(nomeDoArtistaProcurado, StringComparison.OrdinalIgnoreCase));
+        ArgumentException.ThrowIfNullOrEmpty(nomeDaBanda);
+        _context.ListaDeTodasAsBandas.Add(new Banda(nomeDaBanda));
     }
 
-    // (Para o Program.cs)
-    // Se o usuário tentar cadastrar algo que já existe, throw Exception.
-    public void RegistraNovaBanda(string nomeDoaBandaASerRegistrada)
+    /// <summary>
+    /// Atribui uma nota a uma banda existente após validar os critérios de pontuação.
+    /// </summary>
+    public void AvaliaBanda(Banda banda, int nota)
     {
-        if (string.IsNullOrWhiteSpace(nomeDoaBandaASerRegistrada)) throw new ArgumentException("Nome vazio.");
-        
-        if (BuscarBandaPorNome(nomeDoaBandaASerRegistrada) != null)
-            throw new InvalidOperationException($"A Banda'{nomeDoaBandaASerRegistrada}' já está no sistema.");
-
-        _context.ListaDeTodasAsBandas.Add(new Banda(nomeDoaBandaASerRegistrada));
-    }
-
-    // Para demais services.
-    // O sistema obtem o Artista, sem exceptions. Se não existir, cria um novo.
-    public Banda ObterOuCriarBanda(string nomeDaBandaParaVincular)
-    {
-        var banda = BuscarBandaPorNome(nomeDaBandaParaVincular);
-        
-        if (banda == null)
-        {
-            banda = new Banda(nomeDaBandaParaVincular);
-            _context.ListaDeTodasAsBandas.Add(banda);
-        }
-        
-        return banda;
-    }
-
-    public void AvaliaBanda(int nota, string nomeDaBanda)
-    {
-        if (nota < 1 || nota > 10) throw new ArgumentException("Valor de nota atribuído é inválido. Valor deve ser 1-10");
-
-        var banda = _context.ListaDeTodasAsBandas.FirstOrDefault(b => b.NomeDaBanda.Equals(nomeDaBanda, StringComparison.OrdinalIgnoreCase));
-        if (banda == null) throw new ArgumentException("Banda Nao encontrada");
-
+        ArgumentNullException.ThrowIfNull(banda);
+        if (nota < 1 || nota > 10) throw new ArgumentOutOfRangeException(
+            nameof(nota), nota, "Valor de nota atribuído é inválido. Valor deve ser 1-10");
+    
         banda.AdicionarAvaliacao(new Avaliacao(nota));
     }
 }
