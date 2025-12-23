@@ -1,6 +1,7 @@
 ﻿using ScreenSound.UI.Menus;
 using ScreenSound.Application;
 using ScreenSound.Utils;
+using ScreenSound.UI;
 
 var contexto = new SystemContext();
 var bandaService = new BandaService(contexto);
@@ -46,7 +47,7 @@ void ExibirOpcoesDoMenu()
                 new MenuRegistrarAlbum(contexto).Executar(albumService);
                 break;
             case 3:
-                // MostrarBandasRegistradas();
+                new MenuBandasRegistradas(contexto).Executar(bandaService);
                 break;
             case 4:
                 new MenuAvaliarBanda().Executar(bandaService);
@@ -64,22 +65,7 @@ void ExibirOpcoesDoMenu()
     }
 }
 
-// void MostrarBandasRegistradas()
-// {
-//     Console.Clear();
-//     ExibirTituloDaOpcao("Exibindo todas as bandas registradas na nossa aplicação");
 
-//     foreach (string banda in bandasRegistradas.Keys)
-//     {
-//         Console.WriteLine($"Banda: {banda}");
-//     }
-
-//     Console.WriteLine("\nDigite uma tecla para voltar ao menu principal");
-//     Console.ReadKey();
-//     Console.Clear();
-//     ExibirOpcoesDoMenu();
-
-// }
 
 // void ExibirTituloDaOpcao(string titulo)
 // {
