@@ -4,41 +4,28 @@ using ScreenSound.Domain;
 internal class MusicaService
 {
     private SystemContext _context;
-    // Permite oa cesso aos metodos do BandaService
-    private readonly BandaService _bandaService;
-
-    // Permite o acesso aos metodos do GeneroService
-    private readonly GeneroService _generoService;
-
-    public MusicaService(SystemContext context, BandaService bandaService, GeneroService generoService)
+    public MusicaService(SystemContext context)
     {
         _context = context;
-        _bandaService = bandaService;
-        _generoService = generoService;
     }
 
-    // Esta função centraliza a regra: "Para criar uma música, primeiro resolva o artista solicitando ao ArtistaService a validacao"
-    public void RegistrarNovaMusica(string nomeMusica, string nomeDaBanda, int duracao, string nomeGenero)
+    public void RegistrarNovaMusica(string nomeMusica, Banda banda, int duracao, Genero genero)
     {
-        // VALIDACAO nomeDaMusica
         if (string.IsNullOrWhiteSpace(nomeMusica)) throw new ArgumentException("Nome da música inválido.");
         if (duracao <= 0) throw new ArgumentException("A duração deve ser positiva.");
+        if (banda == null) throw new KeyNotFoundException("Banda não registrada no Sistema.");
+        if (genero == null) throw new ArgumentNullException(nameof(genero), "Gênero não pode ser nulo.");
 
-        // VALDACAO nomeDaBanda
-        Banda banda = _bandaService.ObterOuCriarBanda(nomeDaBanda);
+        bool musicaDuplicada = _context.ListaDeTodasAsMusicas.Any(m =>
+            m.NomeDaMusica.Equals(nomeMusica, StringComparison.OrdinalIgnoreCase)
+            && m.BandaDaMusica == banda);
 
-        // VALIDACAO nomeGenero
-        Genero genero = _generoService.ObterOuCriarGenero(nomeGenero);
-
-        // Verifica se essa música já existe para ESSE artista específico
-        // (Evita que o mesmo artista tenha duas músicas com o mesmo nome)
-        if (_context.ListaDeTodasAsMusicas.Any(m => m.NomeDaMusica.Equals(nomeMusica, StringComparison.OrdinalIgnoreCase)
-            && m.BandaDaMusica == banda))
+        if (musicaDuplicada)
         {
-            throw new InvalidOperationException($"A música '{nomeMusica}' já está cadastrada para o artista {banda.NomeDaBanda}.");
+            throw new InvalidOperationException(
+                $"A música '{nomeMusica}' já está cadastrada paraa banda {banda.NomeDaBanda}.");
         }
 
-        // Criação final
         Musica novaMusica = new Musica(nomeMusica, banda, duracao, genero);
         _context.ListaDeTodasAsMusicas.Add(novaMusica);
     }
