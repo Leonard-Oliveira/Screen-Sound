@@ -27,7 +27,7 @@ internal class EpisodioDePodcast
     #endregion
 
     #region Métodos
-    public void AdicionarConvidaos(string nomeDoConvidado)
+    public void AdicionarConvidados(string nomeDoConvidado)
     {
         if (nomeDoConvidado != null)
         {
