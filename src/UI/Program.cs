@@ -1,15 +1,11 @@
 ﻿using ScreenSound.UI.Menus;
 using ScreenSound.Application;
 using ScreenSound.Utils;
-using ScreenSound.UI;
 
 var context = new SystemContext();
 var menuFactory = new MenuFactory(context);
 
 context.SemeiaDados();
-
-var Service = new BandaService(context);
-var albumService = new AlbumService(context);
 
 bool executando = true;
 
