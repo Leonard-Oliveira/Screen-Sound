@@ -3,12 +3,13 @@ using ScreenSound.Application;
 using ScreenSound.Utils;
 using ScreenSound.UI;
 
-var contexto = new SystemContext();
+var context = new SystemContext();
+var menuFactory = new MenuFactory(context);
 
-contexto.SemeiaDados();
+context.SemeiaDados();
 
-var bandaService = new BandaService(contexto);
-var albumService = new AlbumService(contexto);
+var Service = new BandaService(context);
+var albumService = new AlbumService(context);
 
 bool executando = true;
 
@@ -37,6 +38,7 @@ void ExibirOpcoesDoMenu()
         Console.WriteLine("3. Lista de Bandas");
         Console.WriteLine("4. Avaliar uma banda");
         Console.WriteLine("5. Buscar detalhes de uma banda");
+        Console.WriteLine("6. Avaliar Album");
         Console.WriteLine("Digite -1 para sair");
 
         int opcaoEscolhida = ConsoleUtils.SolicitaInteiro("Digite a opcao escolhida: ");
@@ -44,19 +46,22 @@ void ExibirOpcoesDoMenu()
         switch (opcaoEscolhida)
         {
             case 1:
-                new MenuRegistrarBanda().Executar(bandaService);
+                menuFactory.CriarMenuRegistrarBanda().Executar();
                 break;
             case 2:
-                new MenuRegistrarAlbum(contexto).Executar(albumService);
+                menuFactory.CriarMenuRegistrarAlbum().Executar();
                 break;
             case 3:
-                new MenuBandasRegistradas(contexto).Executar(bandaService);
+                menuFactory.CriarMenuBandasRegistradas().Executar();
                 break;
             case 4:
-                new MenuAvaliarBanda().Executar(bandaService);
+                menuFactory.CriarMenuAvaliarBanda().Executar();
                 break;
             case 5:
-                new MenuDetalhesDaBanda(contexto).Executar(bandaService);
+                menuFactory.CriarMenuDetalhesDaBanda().Executar();
+                break;
+            case 6: 
+                menuFactory.CriarMenuAvaliarAlbum().Executar();
                 break;
             case -1:
                 Console.WriteLine("Tchau tchau :)");
@@ -67,6 +72,6 @@ void ExibirOpcoesDoMenu()
         }
     }
 }
-
-Console.WriteLine($"DEBUG: Total de bandas no contexto: {contexto.ListaDeTodasAsBandas.Count}");
+    
+Console.WriteLine($"DEBUG: Total de bandas no contexto: {context.ListaDeTodasAsBandas.Count}");
 ExibirOpcoesDoMenu();
