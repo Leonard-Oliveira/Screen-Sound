@@ -12,7 +12,7 @@ var albumService = new AlbumService(contexto);
 
 bool executando = true;
 
-void ExibirLogo() // apresenta o titulo de boas vindas e a logo
+void ExibirLogo()
 {
     Console.WriteLine(@"
 
@@ -68,15 +68,5 @@ void ExibirOpcoesDoMenu()
     }
 }
 
-
-
-// void ExibirTituloDaOpcao(string titulo)
-// {
-//     int quantidadeDeLetras = titulo.Length;
-//     string asteriscos = string.Empty.PadLeft(quantidadeDeLetras, '*');
-//     Console.WriteLine(asteriscos);
-//     Console.WriteLine(titulo);
-//     Console.WriteLine(asteriscos + "\n");
-// }       
 Console.WriteLine($"DEBUG: Total de bandas no contexto: {contexto.ListaDeTodasAsBandas.Count}");
 ExibirOpcoesDoMenu();
