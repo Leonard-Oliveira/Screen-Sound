@@ -1,44 +1,58 @@
+using Screensound.Domain.Interfaces;
+using ScreenSound.Application;
+
 namespace ScreenSound.Domain;
 
-internal class Banda
+internal class Banda : IAvaliavel
 {
+    #region Campos Privados (Backing Fields)
+    private readonly List<Musica> _musicasDaBanda = new();
+    private readonly List<Album> _albunsDaBanda = new();
     private readonly List<Avaliacao> _avaliacoes = new();
-    
-    //ATRIBUTOS
+    #endregion
+
+    #region Atributos e Propriedades
     public string NomeDaBanda { get; private set; }
-    public List<Musica> ListaDeMusicasDaBanda { get; private set; }
-    public List<Album> ListaDeAlbunsDaBanda { get; private set; }
+
+    // Proteção: Ninguém de fora pode dar um .Add() ou .Clear() nessas listas
+    public IReadOnlyCollection<Musica> ListaDeMusicasDaBanda => _musicasDaBanda.AsReadOnly();
+    public IReadOnlyCollection<Album> ListaDeAlbunsDaBanda => _albunsDaBanda.AsReadOnly();
     public IReadOnlyCollection<Avaliacao> Avaliacoes => _avaliacoes.AsReadOnly();
 
     public double AvaliacaoMedia => _avaliacoes.Any() ? _avaliacoes.Average(a => a.Nota) : 0.0;
+    #endregion
 
+    #region Construtor
     public Banda(string nomeDaBanda)
     {
+        if (String.IsNullOrWhiteSpace(nomeDaBanda)) throw new ArgumentException("Nome da Banda inválido.");
         NomeDaBanda = nomeDaBanda;
-        ListaDeMusicasDaBanda = new List<Musica>();
-        ListaDeAlbunsDaBanda = new List<Album>();
     }
+    #endregion
 
+    #region Métodos
     public void AtribuiMusicaAoArtista(Musica musica)
     {
-        ListaDeMusicasDaBanda.Add(musica);
+        if (musica != null) _musicasDaBanda.Add(musica);
     }
 
     public void AtribuiAlbumAoArtista(Album album)
     {
-        ListaDeAlbunsDaBanda.Add(album);
+        if (album != null) _albunsDaBanda.Add(album);
     }
 
     public void AtribuiAvaliacao(Avaliacao avaliacao)
     {
-        _avaliacoes.Add(avaliacao);
+        if (avaliacao != null) _avaliacoes.Add(avaliacao);
     }
 
     public void ExibirDiscografia()
     {
-       foreach (var musica in ListaDeMusicasDaBanda)
+        Console.WriteLine($"--- Discografia de {NomeDaBanda} ---");
+        foreach (var musica in ListaDeMusicasDaBanda)
         {
             Console.WriteLine(musica.NomeDaMusica);
         }
     }
+    #endregion
 }
