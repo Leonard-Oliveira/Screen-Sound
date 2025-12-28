@@ -1,16 +1,17 @@
 using ScreenSound.Application;
 using ScreenSound.Domain;
 using ScreenSound.Utils;
-internal class MenuRegistrarAlbum : Menu<AlbumService>
+internal class MenuRegistrarAlbum : MenuComContexto<AlbumService>
 {
+    // dependencia necessária para este menu específico
     private readonly BandaService _bandaService;
 
-    public MenuRegistrarAlbum(SystemContext context)
+    public MenuRegistrarAlbum(SystemContext context, AlbumService albumService, BandaService bandaService) : base(context, albumService)
     {
-        _bandaService = new BandaService(context);
+        _bandaService = bandaService;
     }
 
-    protected override void ExibirConteudo(AlbumService albumService)
+    protected override void ExibirConteudo()
     {
         ExibirTituloDoMenu("Registrar Álbum");
 
@@ -39,7 +40,7 @@ internal class MenuRegistrarAlbum : Menu<AlbumService>
 
         try
         {
-            albumService.RegistraAlbum(nomeDoAlbum, bandaEncontrada, anoDeLancamento);
+            Service.RegistraAlbum(nomeDoAlbum, bandaEncontrada, anoDeLancamento);
             Console.WriteLine($"\n✅ Álbum '{nomeDoAlbum}' de {bandaEncontrada.NomeDaBanda} registrado com sucesso!");
         }
         catch (InvalidOperationException ex)
