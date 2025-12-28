@@ -1,4 +1,6 @@
 namespace ScreenSound.UI.Menus;
+
+using System.Runtime.CompilerServices;
 using ScreenSound.Application;
 using ScreenSound.Utils;
 
@@ -7,7 +9,7 @@ internal class MenuRegistrarBanda : MenuComContexto<BandaService>
     public MenuRegistrarBanda(SystemContext context, BandaService bandaService) 
         : base(context, bandaService) {}
 
-    protected override void ExibirConteudo()
+    protected override async Task ExibirConteudo()
     {
         ExibirTituloDoMenu("Registrar Banda");
 
@@ -19,5 +21,7 @@ internal class MenuRegistrarBanda : MenuComContexto<BandaService>
         Console.WriteLine("Pressione qualquer tecla para continuar...");
         Console.ReadKey();
         LoadingTransicao();
+
+        await Task.CompletedTask;
     }
 }

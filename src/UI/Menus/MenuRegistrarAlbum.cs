@@ -11,7 +11,7 @@ internal class MenuRegistrarAlbum : MenuComContexto<AlbumService>
         _bandaService = bandaService;
     }
 
-    protected override void ExibirConteudo()
+    protected override async Task ExibirConteudo()
     {
         ExibirTituloDoMenu("Registrar Álbum");
 
@@ -55,5 +55,6 @@ internal class MenuRegistrarAlbum : MenuComContexto<AlbumService>
         }
         Console.WriteLine("\nPressione qualquer tecla para voltar ao menu...");
         Console.ReadKey();
+        await Task.CompletedTask;
     }
 }

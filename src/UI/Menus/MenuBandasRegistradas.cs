@@ -6,7 +6,7 @@ internal class MenuBandasRegistradas : MenuComContexto<BandaService>
 {
     public MenuBandasRegistradas(SystemContext context, BandaService service) : base(context, service) {}
     
-    protected override void ExibirConteudo()
+    protected override async Task ExibirConteudo()
     {
         int index = 1;
         ConsoleUtils.LimparTela();
@@ -19,5 +19,7 @@ internal class MenuBandasRegistradas : MenuComContexto<BandaService>
         Console.WriteLine("Pressione qualquer tecla para retornar ao menu principal");
         Console.ReadKey();
         LoadingTransicao();
+
+        await Task.CompletedTask;
     }
 }

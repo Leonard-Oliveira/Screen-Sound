@@ -1,5 +1,3 @@
-using ScreenSound.Application;
-using ScreenSound.Domain;
 using ScreenSound.Utils;
 
 internal abstract class Menu<T>
@@ -11,13 +9,13 @@ internal abstract class Menu<T>
         Service = service;
     }
 
-    public void Executar()
+    public virtual async Task Executar()
     {
         ConsoleUtils.LimparTela();
-        ExibirConteudo();
+        await ExibirConteudo();
     }
 
-    protected abstract void ExibirConteudo();
+    protected abstract Task ExibirConteudo();
     
     protected void ExibirTituloDoMenu(string titulo)
     {

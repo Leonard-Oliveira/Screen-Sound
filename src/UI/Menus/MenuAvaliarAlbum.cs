@@ -6,7 +6,7 @@ internal class MenuAvaliarAlbum : MenuComContexto<AlbumService>
 {
     public MenuAvaliarAlbum(SystemContext context, AlbumService service) : base(context, service) {}
 
-    protected override void ExibirConteudo()
+    protected override async Task ExibirConteudo()
     {
         ExibirTituloDoMenu("Avaliar Album");
 
@@ -28,5 +28,7 @@ internal class MenuAvaliarAlbum : MenuComContexto<AlbumService>
             Console.Read();
             LoadingTransicao();
         }
+
+        await Task.CompletedTask;
     }
 }

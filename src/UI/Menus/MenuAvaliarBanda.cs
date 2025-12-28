@@ -7,7 +7,7 @@ internal class MenuAvaliarBanda : MenuComContexto<BandaService>
     public MenuAvaliarBanda(SystemContext context, BandaService service) 
         : base(context, service) { }
 
-    protected override void ExibirConteudo()
+    protected override async Task ExibirConteudo()
     {
         ExibirTituloDoMenu("Avaliar Banda");
 
@@ -74,5 +74,7 @@ internal class MenuAvaliarBanda : MenuComContexto<BandaService>
         } while (!notaRegistradaComSucesso);
         // 4. Transição final
         LoadingTransicao();
+
+        await Task.CompletedTask;
     }
 }

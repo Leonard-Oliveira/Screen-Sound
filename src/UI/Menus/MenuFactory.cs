@@ -1,6 +1,5 @@
-using Microsoft.VisualBasic;
+using ScreenSound.Menus;
 using ScreenSound.Application;
-using ScreenSound.Domain;
 
 namespace ScreenSound.UI.Menus;
 
@@ -20,6 +19,12 @@ internal class MenuFactory
         return new MenuAvaliarAlbum(_context, service);
     }
 
+    public MenuExibirDetalhesComIA CriarMenuExibirDetalhesComIA()
+    {
+        var chatService = new ChatService(); 
+        return new MenuExibirDetalhesComIA(_context, chatService);
+    }
+    
     public MenuRegistrarAlbum CriarMenuRegistrarAlbum()
     {
         var albumService = new AlbumService(_context);
