@@ -2,20 +2,15 @@ namespace ScreenSound.UI;
 using ScreenSound.Application;
 using ScreenSound.Utils;
 
-internal class MenuDetalhesDaBanda : Menu<BandaService> 
+internal class MenuDetalhesDaBanda : MenuComContexto<BandaService> 
 {
-    private readonly SystemContext _systemContext;
+    public MenuDetalhesDaBanda(SystemContext context, BandaService service) : base(context, service) {}
 
-    public MenuDetalhesDaBanda(SystemContext context) 
-    {
-        _systemContext = context;
-    }
-
-    protected override void ExibirConteudo(BandaService bandaService) {
+    protected override void ExibirConteudo() {
         ExibirTituloDoMenu("Buscar Informaçoes da Banda");
 
         //string busca = ConsoleUtils.SolicitaTexto("Informe a banda que está procurando: ");
-        var banda = bandaService.BuscarBandaPorNome(ConsoleUtils.SolicitaTexto("Informe a banda que está procurando: "));
+        var banda = Service.BuscarBandaPorNome(ConsoleUtils.SolicitaTexto("Informe a banda que está procurando: "));
         if (banda != null)
         {
             Console.WriteLine(banda.NomeDaBanda);
