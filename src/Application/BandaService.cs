@@ -21,14 +21,4 @@ internal class BandaService
         ArgumentException.ThrowIfNullOrEmpty(nomeDaBanda);
         _context.ListaDeTodasAsBandas.Add(new Banda(nomeDaBanda));
     }
-
-    /// <summary>
-    /// Atribui uma nota a uma banda existente após validar os critérios de pontuação.
-    /// </summary>
-    public void AvaliaBanda(Banda banda, Avaliacao avaliacao)
-    {
-        ArgumentNullException.ThrowIfNull(banda);
-        ArgumentNullException.ThrowIfNull(avaliacao);
-        banda.AtribuiAvaliacao(avaliacao);
-    }
 }
