@@ -30,4 +30,15 @@ internal class AlbumService
             new Album(nomeDoAlbum, bandaDoAlbum, anoDeLancamento)
         );
     }
+
+    public Album? BuscarAlbumPorNome(string nomeDoAlbum)
+    {
+        return _context.ListaDeTodosOsAlbuns.FirstOrDefault(
+            a => a.NomeDoAlbum.Equals(nomeDoAlbum, StringComparison.OrdinalIgnoreCase));
+    }
+
+    public void AvaliaAlbum(double nota)
+    {
+        
+    }
 }
