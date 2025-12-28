@@ -1,6 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-using System.Globalization;
-using System.Text.Json.Serialization;
 using Screensound.Domain.Interfaces;
 
 namespace ScreenSound.Domain;
