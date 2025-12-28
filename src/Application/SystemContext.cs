@@ -7,16 +7,21 @@ namespace ScreenSound.Application;
 
 internal class SystemContext
 {
+    #region Configuracoes Estáticas
     public static string ApplicationName = "Screen Sound";
     public static string Version = "1.0.0";
     public static bool IsDebugMode = false;
+    #endregion
 
+    #region Dados (Listas de Domínio)
     public List<Banda> ListaDeTodasAsBandas = new();
     public List<Genero> ListaDeTodosOsGeneros = new();
     public List<Musica> ListaDeTodasAsMusicas = new();
     public List<Podcast> ListaDeTodosOsPodcasts = new();
     public List<Album> ListaDeTodosOsAlbuns = new();
+    #endregion
 
+    #region Métodos e Seed
     public void SemeiaDados()
     {
         try
@@ -90,4 +95,5 @@ internal class SystemContext
             Console.WriteLine($"ERRO CRÍTICO no SemeiaDados: {ex.Message}");
         }
     }
+    #endregion
 }

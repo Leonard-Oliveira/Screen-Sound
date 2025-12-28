@@ -2,13 +2,19 @@ namespace ScreenSound.Application;
 using ScreenSound.Domain;
 
 internal class PodcastService
-{
+{   
+    #region Propriedades Privadas (Backing Fields)
     private readonly SystemContext _context;
+    #endregion
+
+    #region Construtor
     public PodcastService(SystemContext context)
     {
         _context = context;
     }
-    //Valida as entradas do construtor de Podcast
+    #endregion
+
+    #region Métodos
     public void CriarPodcast(string nomeDoPodcast, string host)
     {
         if (string.IsNullOrWhiteSpace(nomeDoPodcast)) throw new ArgumentException("nomeDoPodcast nao pode ser null.");
@@ -41,4 +47,5 @@ internal class PodcastService
         // A funcao AdicionaEpisodio já incrementa o totalDeEpisodios
         // Deve ser chamado no programa apos criar o podcast
     }
+    #endregion
 }

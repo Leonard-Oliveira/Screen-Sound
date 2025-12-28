@@ -12,7 +12,6 @@ internal class MenuFactory
         _context = context;
     }
 
-    // O Program.cs chamará estes métodos:
     public MenuAvaliarAlbum CriarMenuAvaliarAlbum()
     {
         var service = new AlbumService(_context);

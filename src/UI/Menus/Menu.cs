@@ -3,7 +3,7 @@ using ScreenSound.Utils;
 internal abstract class Menu<T>
 {
     protected T Service { get; }
-
+    
     protected Menu(T service)
     {
         Service = service;

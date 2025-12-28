@@ -4,13 +4,18 @@ using ScreenSound.Domain;
 
 internal class AlbumService
 {
+    #region Propriedades Privadas (Backing Fields)
     private SystemContext _context;
+    #endregion
 
+    #region Construtor
     public AlbumService(SystemContext context)
     {
         _context = context;
     }
+    #endregion
 
+    #region Métodos
     public void RegistraAlbum(string nomeDoAlbum, Banda bandaDoAlbum, int anoDeLancamento)
     {
         if (bandaDoAlbum == null) throw new ArgumentNullException(nameof(bandaDoAlbum));
@@ -36,9 +41,5 @@ internal class AlbumService
         return _context.ListaDeTodosOsAlbuns.FirstOrDefault(
             a => a.NomeDoAlbum.Equals(nomeDoAlbum, StringComparison.OrdinalIgnoreCase));
     }
-
-    public void AvaliaAlbum(double nota)
-    {
-        
-    }
+    #endregion
 }

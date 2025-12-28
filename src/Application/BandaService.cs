@@ -2,9 +2,15 @@ namespace ScreenSound.Application;
 using ScreenSound.Domain;
 internal class BandaService
 {   
+    #region Propriedades Privadas
     private readonly SystemContext _context;
+    #endregion
+
+    #region Construtor
     public BandaService(SystemContext context) {_context = context;}
+    #endregion
     
+    #region Métodos
     /// <summary>
     /// Realiza uma busca segura que retorna null caso a banda não seja encontrada.
     /// </summary>
@@ -21,4 +27,5 @@ internal class BandaService
         ArgumentException.ThrowIfNullOrEmpty(nomeDaBanda);
         _context.ListaDeTodasAsBandas.Add(new Banda(nomeDaBanda));
     }
+    #endregion
 }

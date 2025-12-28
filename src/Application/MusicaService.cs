@@ -3,12 +3,18 @@ namespace ScreenSound.Application;
 using ScreenSound.Domain;
 internal class MusicaService
 {
+    #region Propriedades Privadas
     private SystemContext _context;
+    #endregion
+
+    #region Construtor
     public MusicaService(SystemContext context)
     {
         _context = context;
     }
+    #endregion
 
+    #region Métodos
     public void RegistrarNovaMusica(string nomeMusica, Banda banda, int duracao, Genero genero)
     {
         if (string.IsNullOrWhiteSpace(nomeMusica)) throw new ArgumentException("Nome da música inválido.");
@@ -29,4 +35,5 @@ internal class MusicaService
         Musica novaMusica = new Musica(nomeMusica, banda, duracao, genero);
         _context.ListaDeTodasAsMusicas.Add(novaMusica);
     }
+    #endregion
 }

@@ -2,11 +2,18 @@ namespace ScreenSound.Application;
 using ScreenSound.Domain;
 internal class GeneroService
 {
+    #region Propriedades Privadas (Backing Fields)
     private SystemContext _context;
+    #endregion
+
+    #region Construtor
     public GeneroService(SystemContext context)
     {
         _context = context;
     }
+    #endregion
+
+    #region Métodos
     //funcao que retorna um objeto confirmando ou nao se o nomeDoGeneroProcurado corresponde a um Genero
     public Genero? BuscarGeneroPorNome(string nomeDoGeneroProcurado)
     {
@@ -39,4 +46,5 @@ internal class GeneroService
     {
         return _context.ListaDeTodosOsGeneros;
     }
+    #endregion
 }
