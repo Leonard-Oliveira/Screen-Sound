@@ -2,14 +2,17 @@ using ScreenSound.Application;
 using ScreenSound.Domain;
 using ScreenSound.Utils;
 
-internal class MenuAvaliarBanda : Menu<BandaService>
+internal class MenuAvaliarBanda : MenuComContexto<BandaService>
 {
-    protected override void ExibirConteudo(BandaService bandaService)
+    public MenuAvaliarBanda(SystemContext context, BandaService service) 
+        : base(context, service) { }
+
+    protected override void ExibirConteudo()
     {
         ExibirTituloDoMenu("Avaliar Banda");
 
         string bandaInput = ConsoleUtils.SolicitaTexto("Qual o nome da banda que você quer avaliar? ");
-        Banda? bandaEncontrada = bandaService.BuscarBandaPorNome(bandaInput);
+        Banda? bandaEncontrada = Service.BuscarBandaPorNome(bandaInput);
 
         if (bandaEncontrada == null)
         {
@@ -18,9 +21,9 @@ internal class MenuAvaliarBanda : Menu<BandaService>
 
             if (confirmacao == "S")
             {
-                bandaService.RegistraNovaBanda(bandaInput);
+                Service.RegistraNovaBanda(bandaInput);
                 // Reatribuição para garantir que o objeto exista para o restante do fluxo
-                bandaEncontrada = bandaService.BuscarBandaPorNome(bandaInput);
+                bandaEncontrada = Service.BuscarBandaPorNome(bandaInput);
 
                 if (bandaEncontrada != null) Console.WriteLine("✅ Banda registrada com sucesso!");
             }
@@ -49,8 +52,8 @@ internal class MenuAvaliarBanda : Menu<BandaService>
                 // O construtor de Avaliacao valida se a nota está entre 1 e 10
                 Avaliacao novaAvaliacao = new(nota);
 
-                // O Service orquestra a atribuição da nota ao objeto Banda
-                bandaService.AvaliaBanda(banda, novaAvaliacao);
+                // Chama o método de banda, nao é necessário intervencao do Service3
+                banda.AtribuiAvaliacao(novaAvaliacao);
 
                 Console.WriteLine($"\n⭐ Sucesso! Você deu nota {nota} para a banda {banda.NomeDaBanda}.");
                 notaRegistradaComSucesso = true;
