@@ -4,13 +4,21 @@ using ScreenSound.Utils;
 
 internal abstract class Menu<T>
 {
-    public void Executar(T service)
+    protected T Service { get; }
+
+    protected Menu(T service)
     {
-        ConsoleUtils.LimparTela();
-        ExibirConteudo(service);
+        Service = service;
     }
 
-    protected abstract void ExibirConteudo(T service);
+    public void Executar()
+    {
+        ConsoleUtils.LimparTela();
+        ExibirConteudo();
+    }
+
+    protected abstract void ExibirConteudo();
+    
     protected void ExibirTituloDoMenu(string titulo)
     {
         int tamanhoDoTitulo = titulo.Length;
