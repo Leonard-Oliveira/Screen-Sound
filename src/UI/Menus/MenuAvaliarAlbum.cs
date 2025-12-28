@@ -10,12 +10,12 @@ internal class MenuAvaliarAlbum : MenuComContexto<AlbumService>
     {
         ExibirTituloDoMenu("Avaliar Album");
 
-        string albumSelecionado = ConsoleUtils.SolicitaTexto("Qual album voce quer avaliar?");
+        string albumSelecionado = ConsoleUtils.SolicitaTexto("Qual album voce quer avaliar? ");
         var albumExistente = Service.BuscarAlbumPorNome(albumSelecionado);
         
         if (albumExistente != null)
         {
-            int nota = ConsoleUtils.SolicitaInteiro("Qual nota voce atribui ao album?");
+            int nota = ConsoleUtils.SolicitaInteiro("Qual nota voce atribui ao album? ");
             albumExistente.AtribuiAvaliacao(new Avaliacao(nota));
             Console.WriteLine(
                 $"Nota {nota} atribuída ao album {albumExistente.NomeDoAlbum} com sucesso!");
