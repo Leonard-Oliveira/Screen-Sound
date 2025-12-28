@@ -25,6 +25,16 @@ void ExibirLogo()
 
 void ExibirOpcoesDoMenu()
 {
+    var menus = new Dictionary<int, Action>
+    {
+        { 1, () => menuFactory.CriarMenuRegistrarBanda().Executar() },
+        { 2, () => menuFactory.CriarMenuRegistrarAlbum().Executar() },
+        { 3, () => menuFactory.CriarMenuBandasRegistradas().Executar() },
+        { 4, () => menuFactory.CriarMenuAvaliarBanda().Executar() },
+        { 5, () => menuFactory.CriarMenuDetalhesDaBanda().Executar() },
+        { 6, () => menuFactory.CriarMenuAvaliarAlbum().Executar() }
+    };
+    
     while (executando)
     {
         ConsoleUtils.LimparTela();
@@ -39,35 +49,22 @@ void ExibirOpcoesDoMenu()
 
         int opcaoEscolhida = ConsoleUtils.SolicitaInteiro("Digite a opcao escolhida: ");
 
-        switch (opcaoEscolhida)
+        if (opcaoEscolhida == -1) 
         {
-            case 1:
-                menuFactory.CriarMenuRegistrarBanda().Executar();
-                break;
-            case 2:
-                menuFactory.CriarMenuRegistrarAlbum().Executar();
-                break;
-            case 3:
-                menuFactory.CriarMenuBandasRegistradas().Executar();
-                break;
-            case 4:
-                menuFactory.CriarMenuAvaliarBanda().Executar();
-                break;
-            case 5:
-                menuFactory.CriarMenuDetalhesDaBanda().Executar();
-                break;
-            case 6: 
-                menuFactory.CriarMenuAvaliarAlbum().Executar();
-                break;
-            case -1:
-                Console.WriteLine("Tchau tchau :)");
-                break;
-            default:
-                Console.WriteLine("Opção inválida");
-                break;
+            Console.WriteLine("Tchau tchau :)");
+            executando = false;
+        }
+        else if (menus.ContainsKey(opcaoEscolhida)) 
+        {
+            menus[opcaoEscolhida].Invoke();
+        }
+        else 
+        {
+            Console.WriteLine("Opção inválida");
         }
     }
+
 }
-    
+
 Console.WriteLine($"DEBUG: Total de bandas no contexto: {context.ListaDeTodasAsBandas.Count}");
 ExibirOpcoesDoMenu();
