@@ -1,7 +1,6 @@
-using System.Net;
+namespace ScreenSound.Domain;
 using Screensound.Domain.Interfaces;
 
-namespace ScreenSound.Domain;
 internal class Album : IAvaliavel
 {   
     #region Campos Privados (Backing Fields)
