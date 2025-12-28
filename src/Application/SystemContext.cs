@@ -9,7 +9,7 @@ internal class SystemContext
 {
     public static string ApplicationName = "Screen Sound";
     public static string Version = "1.0.0";
-    public static bool IsDebugMode = true;
+    public static bool IsDebugMode = false;
 
     public List<Banda> ListaDeTodasAsBandas = new();
     public List<Genero> ListaDeTodosOsGeneros = new();
@@ -58,9 +58,6 @@ internal class SystemContext
 
                             foreach (var musicaDto in albumDto.MusicasDoAlbum)
                             {
-                                // AQUI ESTÁ O AJUSTE: 
-                                // Passamos a 'bandaReal' e um Genero padrão para satisfazer o seu construtor
-                                // (ou você pode buscar o gênero real se tiver no DTO)
                                 var generoPadrao = new Genero("Rock");
 
                                 var musicaReal = new Musica(
@@ -72,7 +69,10 @@ internal class SystemContext
 
                                 albumReal.AdicionaMusicaAoAlbum(musicaReal);
 
-                                // Adicionamos também à lista global de músicas do contexto
+                                // --- ESTA LINHA CONECTA A MÚSICA À BANDA DIRETAMENTE ---
+                                bandaReal.AtribuiMusicaAoArtista(musicaReal);
+                                // ------------------------------------------------------
+
                                 this.ListaDeTodasAsMusicas.Add(musicaReal);
                             }
                             bandaReal.AtribuiAlbumAoArtista(albumReal);

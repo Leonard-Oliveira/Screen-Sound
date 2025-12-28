@@ -36,6 +36,9 @@ internal class Banda
 
     public void ExibirDiscografia()
     {
-       //IMPLEMENTAR
+       foreach (var musica in ListaDeMusicasDaBanda)
+        {
+            Console.WriteLine(musica.NomeDaMusica);
+        }
     }
 }

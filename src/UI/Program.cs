@@ -32,11 +32,11 @@ void ExibirOpcoesDoMenu()
     {
         ConsoleUtils.LimparTela();
         ExibirLogo();
-        Console.WriteLine("\nDigite 1 para registrar uma banda");
-        Console.WriteLine("Digite 2 para registrar o álbum de uma banda");
-        Console.WriteLine("Digite 3 para mostrar todas as bandas");
-        Console.WriteLine("Digite 4 para avaliar uma banda");
-        Console.WriteLine("Digite 5 para exibir os detalhes de uma banda");
+        Console.WriteLine("\n1. Registrar banda");
+        Console.WriteLine("2. Registrar Album");
+        Console.WriteLine("3. Lista de Bandas");
+        Console.WriteLine("4. Avaliar uma banda");
+        Console.WriteLine("5. Buscar detalhes de uma banda");
         Console.WriteLine("Digite -1 para sair");
 
         int opcaoEscolhida = ConsoleUtils.SolicitaInteiro("Digite a opcao escolhida: ");
@@ -56,7 +56,7 @@ void ExibirOpcoesDoMenu()
                 new MenuAvaliarBanda().Executar(bandaService);
                 break;
             case 5:
-                //ExibirDetalhes();
+                new MenuDetalhesDaBanda(contexto).Executar(bandaService);
                 break;
             case -1:
                 Console.WriteLine("Tchau tchau :)");
@@ -77,37 +77,6 @@ void ExibirOpcoesDoMenu()
 //     Console.WriteLine(asteriscos);
 //     Console.WriteLine(titulo);
 //     Console.WriteLine(asteriscos + "\n");
-// }
-
-
-
-// // void ExibirDetalhes()
-// {
-//     Console.Clear();
-//     ExibirTituloDaOpcao("Exibir detalhes da banda");
-//     Console.Write("Digite o nome da banda que deseja conhecer melhor: ");
-//     string nomeDaBanda = Console.ReadLine()!;
-//     if (bandasRegistradas.ContainsKey(nomeDaBanda))
-//     {
-//         List<int> notasDaBanda = bandasRegistradas[nomeDaBanda];
-//         Console.WriteLine($"\nA média da banda {nomeDaBanda} é {notasDaBanda.Average()}.");
-//         /**
-//         * ESPAÇO RESERVADO PARA COMPLETAR A FUNÇÃO
-//         */
-//         Console.WriteLine("Digite uma tecla para votar ao menu principal");
-//         Console.ReadKey();
-//         Console.Clear();
-//         ExibirOpcoesDoMenu();
-
-//     }
-//     else
-//     {
-//         Console.WriteLine($"\nA banda {nomeDaBanda} não foi encontrada!");
-//         Console.WriteLine("Digite uma tecla para voltar ao menu principal");
-//         Console.ReadKey();
-//         Console.Clear();
-//         ExibirOpcoesDoMenu();
-//     }
-// }
+// }       
 Console.WriteLine($"DEBUG: Total de bandas no contexto: {contexto.ListaDeTodasAsBandas.Count}");
 ExibirOpcoesDoMenu();
