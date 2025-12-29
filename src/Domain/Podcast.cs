@@ -1,16 +1,18 @@
 namespace ScreenSound.Domain;
 internal class Podcast
 {
-    //REGRAS DE NEGOCIO
+    #region Propriedades Privadas (Backing Fiels)
+    private List<EpisodioDePodcast> _episodios = new List<EpisodioDePodcast>();
+    #endregion
 
-    //ATRIBUTOS
+    #region Atributos
     public string NomeDoPodcast { get; private set; }
     public string Host { get; private set; }
-    private List<EpisodioDePodcast> _episodios = new List<EpisodioDePodcast>();
     public int TotalDeEpisodios => _episodios.Count;
     public IReadOnlyCollection<EpisodioDePodcast> ListaDeEpisodiosDoPodcast => _episodios.AsReadOnly();
+    #endregion
 
-    // CONSTRUTOR
+    #region Construtor
     public Podcast(string nomeDoPodcast, string host)
     {
         if (string.IsNullOrWhiteSpace(nomeDoPodcast)) throw new ArgumentException("O nome do podcast é obrigatório.");
@@ -19,9 +21,10 @@ internal class Podcast
         NomeDoPodcast = nomeDoPodcast;
         Host = host;
     }
+    #endregion
 
 
-    // METODOS
+    #region Métodos
     public void AdicionaEpisodio(EpisodioDePodcast episodio)
     {
         if (episodio == null) throw new ArgumentNullException(nameof(episodio), "Não é possível adicionar um episódio nulo.");
@@ -32,4 +35,5 @@ internal class Podcast
     {
         Console.WriteLine($"Podcast: {NomeDoPodcast}, Host: {Host}, Total de Episódios: {TotalDeEpisodios}");
     }
+    #endregion
 }

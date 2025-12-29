@@ -1,15 +1,20 @@
 namespace ScreenSound.Domain;
 internal class Genero
 {
-    // ATRIBUTOS
-    public string NomeDoGenero { get; private set; }
+    #region Propriedades Privadas
     private List<Musica> _listaDeMusicasDoGenero = new();
+    #endregion
+
+    #region Atributos
+    public string NomeDoGenero { get; private set; }
     public IReadOnlyList<Musica> ListaDeMusicasDoGenero => _listaDeMusicasDoGenero.AsReadOnly();
+    #endregion
 
-    // CONSTRUTOR
+    #region Construtor
     public Genero(string nomeDoGenero) { NomeDoGenero = nomeDoGenero; }
+    #endregion
 
-    // MÉTODOS
+    #region Métodos
     public void AdicionaMusicaAoGenero(Musica musica)
     {
         _listaDeMusicasDoGenero.Add(musica);
@@ -28,4 +33,5 @@ internal class Genero
     {
         return ListaDeMusicasDoGenero.Count;
     }
+    #endregion
 }
